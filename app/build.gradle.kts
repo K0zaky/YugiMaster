@@ -50,8 +50,12 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
     val retrofitVersion = "2.9.0"
-
+    val coroutinesVersion = "1.6.4"
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -74,4 +78,7 @@ dependencies {
 
     // Gson
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 }
