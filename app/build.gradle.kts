@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     val retrofitVersion = "2.9.0"
     val coroutinesVersion = "1.6.4"
+    val lifecycleruntimektxVersion = "2.5.1"
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -81,4 +82,11 @@ dependencies {
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
+
+    // ViewModel y LiveData
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata:2.7.0")
+
+    // Lifecycle Runtime
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleruntimektxVersion")
 }
