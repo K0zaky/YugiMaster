@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("kapt")
 }
 
 android {
@@ -50,14 +51,15 @@ android {
 }
 
 dependencies {
+    val retrofitVersion = "2.9.0"
+    val coroutinesVersion = "1.6.4"
+    val lifecycleruntimektxVersion = "2.5.1"
+    val glideVersion = "4.12.0"
+
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    val retrofitVersion = "2.9.0"
-    val coroutinesVersion = "1.6.4"
-    val lifecycleruntimektxVersion = "2.5.1"
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -89,4 +91,12 @@ dependencies {
 
     // Lifecycle Runtime
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleruntimektxVersion")
+
+    // Glide
+    implementation("com.github.bumptech.glide:glide:$glideVersion")
+    kapt("com.github.bumptech.glide:compiler:$glideVersion")
+
+    //Coil
+    implementation("io.coil-kt:coil-compose:1.4.0")
+
 }
