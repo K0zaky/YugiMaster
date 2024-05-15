@@ -2,7 +2,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/cardListScreen">
+    app:startDestination="@id/loginScreen">
+
+    <activity
+        android:id="@+id/loginScreen"
+        android:name="com.dabellan.yugiproject.LoginActivity"
+        android:label="Login de la app">
+        <action
+            android:id="@+id/action_login_to_main"
+            app:destination="@+id/cardListScreen" />
+    </activity>
 
     <composable
         android:id="@+id/cardListScreen"
