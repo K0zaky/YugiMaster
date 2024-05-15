@@ -55,6 +55,8 @@ dependencies {
     val coroutinesVersion = "1.6.4"
     val lifecycleruntimektxVersion = "2.5.1"
     val glideVersion = "4.12.0"
+    val nav_version = "2.7.7"
+
 
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -98,5 +100,8 @@ dependencies {
 
     //Coil
     implementation("io.coil-kt:coil-compose:1.4.0")
+
+    //Nav
+    implementation("androidx.navigation:navigation-compose:$nav_version")
 
 }

@@ -1,0 +1,17 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/cardListScreen">
+
+    <composable
+        android:id="@+id/cardListScreen"
+        android:name="com.dabellan.yugiproject.CardListScreen"
+        android:label="Lista de Cartas" />
+
+    <composable
+        android:id="@+id/detallesCartaScreen"
+        android:name="com.dabellan.yugiproject.DetallesCarta"
+        android:label="Detalles de la Carta" />
+
+</navigation>

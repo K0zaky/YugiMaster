@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,13 +18,21 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberImagePainter
 import com.dabellan.yugiproject.Instances.RetrofitInstance
 import com.dabellan.yugiproject.data.model.CartaItem
@@ -50,6 +59,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun AppContent(cartas: List<CartaItem>) {
+    val navController = rememberNavController()
+
     Column {
         Box(
             modifier = Modifier
@@ -63,37 +74,48 @@ fun AppContent(cartas: List<CartaItem>) {
                 modifier = Modifier.align(Alignment.Center)
             )
         }
-        CardList(cartas)
-    }
-}
-
-
-
-@Composable
-fun CardList(cartas: List<CartaItem>) {
-    LazyColumn {
-        items(cartas) { carta ->
-            CardItem(carta)
+        NavHost(navController, startDestination = "cardListScreen") {
+            composable("cardListScreen") {
+                CardList(cartas, navController)
+            }
+            composable("detallesCarta/{cartaId}") { backStackEntry ->
+                DetallesCarta(cartaId = backStackEntry.arguments?.getString("cartaId") ?: "")
+            }
         }
     }
 }
 
 @Composable
-fun CardItem(carta: CartaItem) {
-    val imageUrl = carta.imagen?.replace("\\", "")
+fun CardList(cartas: List<CartaItem>, navController: NavHostController) {
+    LazyColumn {
+        items(cartas) { carta ->
+            CardItem(carta, navController)
+            Divider()
+        }
+    }
+}
 
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp, horizontal = 16.dp),
-        verticalAlignment = Alignment.CenterVertically
+@Composable
+fun CardItem(carta: CartaItem, navController: NavHostController) {
+    val imageUrl = carta.imagen?.replace("\\", "")
+    Card(
+        modifier = Modifier.clickable {
+            navController.navigate("detallesCarta/${carta.id}")
+        }
     ) {
-        CoilImage(url = imageUrl, modifier = Modifier.size(80.dp))
-        Spacer(modifier = Modifier.width(16.dp))
-        Column {
-            Text(text = normalizarTexto(carta.nombre))
-            Text(text = "Código: ${carta.codigo}")
-            Text(text = "Precio: ${carta.precio}€")
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp, horizontal = 16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            CoilImage(url = imageUrl, modifier = Modifier.size(80.dp))
+            Spacer(modifier = Modifier.width(16.dp))
+            Column {
+                Text(text = normalizarTexto(carta.nombre), style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold)
+                Text(text = "Código: ${carta.codigo}")
+                Text(text = "Precio: ${carta.precio}€")
+            }
         }
     }
 }
@@ -125,6 +147,33 @@ fun normalizarTexto(texto: String): String {
         .replace("Ã¼", "ü")
         .replace("Ã±", "ñ")
 }
+
+
+/*
+@Composable
+fun Navigation(){
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = Ruta.MainActivity.ruta){
+        composable(route = Ruta.DetallesCarta.ruta, arguments = listOf(
+            navArgument("name"){
+                type = NavType.IntType
+
+            }
+        )){
+            entry ->
+            DetallesCarta(cartaId = )
+        }
+    }
+}*/
+
+
+/*
+@Composable
+fun detallesCarta(cartaId: Int) {
+    Text(text = "pepino")
+}
+*/
+
 
 /*
 @Preview(showBackground = true)
