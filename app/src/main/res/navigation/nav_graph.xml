@@ -6,7 +6,7 @@
 
     <activity
         android:id="@+id/loginScreen"
-        android:name="com.dabellan.yugiproject.LoginActivity"
+        android:name="com.dabellan.yugiproject.presentation.login.LoginActivity"
         android:label="Login de la app">
         <action
             android:id="@+id/action_login_to_main"
@@ -15,7 +15,7 @@
 
     <composable
         android:id="@+id/cardListScreen"
-        android:name="com.dabellan.yugiproject.CardListScreen"
+        android:name="com.dabellan.yugiproject.presentation.fragments.HomeFragment"
         android:label="Lista de Cartas" />
 
     <composable

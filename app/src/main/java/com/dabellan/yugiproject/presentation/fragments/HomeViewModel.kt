@@ -1,4 +1,4 @@
-package com.dabellan.yugiproject.ViewModels
+package com.dabellan.yugiproject.presentation.fragments
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,10 +10,10 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainViewModel: ViewModel(){
-    //CREO que esto no se usa
-    private val _cartas = MutableLiveData<List<CartaItem>>()
-    val cartas: LiveData<List<CartaItem>> = _cartas
+class HomeViewModel : ViewModel() {
+
+    private val _allCards = MutableLiveData<List<CartaItem>>()
+    val allCards: LiveData<List<CartaItem>> = _allCards
 
     private val apiService: RetrofitService by lazy {
         Retrofit.Builder()
@@ -23,14 +23,9 @@ class MainViewModel: ViewModel(){
             .create(RetrofitService::class.java)
     }
 
-    init {
-        viewModelScope.launch {
-            fetchCartas()
-        }
+    fun getAllCards() = viewModelScope.launch {
+        val cards = apiService.getCartas()
+        _allCards.postValue(cards)
     }
 
-    private suspend fun fetchCartas() {
-        val cartasList = apiService.getCartas()
-        _cartas.postValue(cartasList)
-    }
 }

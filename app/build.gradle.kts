@@ -105,6 +105,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
     //Material3
+    implementation("androidx.compose.material:material:1.6.7")
     implementation("androidx.compose.material3:material3:1.2.1")
 
 }

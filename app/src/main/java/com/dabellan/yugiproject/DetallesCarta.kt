@@ -8,12 +8,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.dabellan.yugiproject.Instances.RetrofitInstance
+import com.dabellan.yugiproject.data.instances.RetrofitInstance
+import com.dabellan.yugiproject.presentation.composables.CoilImage
+import com.dabellan.yugiproject.presentation.composables.normalizarTexto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-
-//TODO: Cuando Antonio me actualice la API arreglar detalles de cartas
-
 
 
 @Composable
