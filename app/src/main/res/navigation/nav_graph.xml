@@ -15,7 +15,7 @@
 
     <composable
         android:id="@+id/cardListScreen"
-        android:name="com.dabellan.yugiproject.presentation.fragments.HomeFragment"
+        android:name="com.dabellan.yugiproject.CardListScreen"
         android:label="Lista de Cartas" />
 
     <composable

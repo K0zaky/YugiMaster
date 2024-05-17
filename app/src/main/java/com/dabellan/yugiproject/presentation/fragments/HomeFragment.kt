@@ -1,7 +1,7 @@
 package com.dabellan.yugiproject.presentation.fragments
 
 import android.content.Context
-import android.widget.Toast
+import android.content.Intent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
@@ -17,17 +17,15 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.asFlow
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavController
+import com.dabellan.yugiproject.presentation.CartDetailActivity
 import com.dabellan.yugiproject.presentation.composables.CardItem
 
-
 @Composable
-fun HomeFragment(homeViewModel: HomeViewModel) {
+fun HomeFragment(homeViewModel: HomeViewModel, navController: NavController) {
 
-    val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
-    val allCards = homeViewModel.allCards.asFlow().collectAsState(initial = emptyList())
-    val navController = rememberNavController()
+    val context = LocalContext.current
 
     DisposableEffect(lifecycleOwner) {
         val lifecycleObserver = LifecycleEventObserver { _, event ->
@@ -41,20 +39,32 @@ fun HomeFragment(homeViewModel: HomeViewModel) {
         }
     }
 
+
+
+    val allCards = homeViewModel.allCards.asFlow().collectAsState(initial = emptyList())
+
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Spacer(modifier = Modifier.size(64.dp))
 
         allCards.value.forEach { carta ->
-            CardItem(carta) {
-                onCardClick(context)
+            CardItem(carta, navController) { cartaId ->
+                onCardClick(cartaId, context)
             }
         }
         Spacer(modifier = Modifier.size(56.dp))
+
     }
+
+
+
 }
 
-private fun onCardClick(context: Context) {
-    Toast.makeText(context, "Hola", Toast.LENGTH_SHORT).show()
+
+
+private fun onCardClick(cartaId: Int, context: Context) {
+    cartaId.toString()
+    val intent = Intent(context, CartDetailActivity::class.java)
+    intent.putExtra("cartId", cartaId)
+    context.startActivity(intent)
+    //navController.navigate("detallesCartaScreen/$cartaId")
 }
-
-

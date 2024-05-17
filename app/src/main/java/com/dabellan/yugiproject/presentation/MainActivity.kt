@@ -9,6 +9,7 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -45,8 +46,9 @@ class MainActivity : ComponentActivity() {
 
         val screens = listOf(
             CurrentScreen.Home,
+
+                CurrentScreen.Deck,
             /*
-                CurrentScreen.Graphic,
                 CurrentScreen.Settings*/
         )
 
@@ -66,7 +68,7 @@ class MainActivity : ComponentActivity() {
                 navController = navController,
                 startDestination = CurrentScreen.Home.route
             ) {
-                composable(CurrentScreen.Home.route) { HomeFragment(homeViewModel) }
+                composable(CurrentScreen.Home.route) { HomeFragment(homeViewModel, navController) }
             }
         }
     }
@@ -99,8 +101,9 @@ class MainActivity : ComponentActivity() {
 
 
     sealed class CurrentScreen(val route: String, val icon: ImageVector) {
-        data object Home : CurrentScreen("homeFragment", Icons.Filled.Home)/*
-    data object Graphic : CurrentScreen(Constants.GRAPHIC, Icons.Filled.Info)
+        data object Home : CurrentScreen("homeFragment", Icons.Filled.Home)
+        data object Deck : CurrentScreen("deckFragment", Icons.Filled.Info)
+    /*
     data object Settings : CurrentScreen(Constants.SETTINGS, Icons.Filled.Settings)*/
     }
 }
