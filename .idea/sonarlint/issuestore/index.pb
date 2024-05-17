@@ -57,3 +57,13 @@ s
 Capp/src/main/java/com/dabellan/yugiproject/data/model/TrampaItem.kt,f\b\fb1ba6254620c74d624bc30f8ec1c4b203b6f06b
 w
 Gapp/src/main/java/com/dabellan/yugiproject/data/instances/ApiService.kt,5\6\56832351c870047002e6b51a5451c041b27cfc3e
+u
+Eapp/src/main/java/com/dabellan/yugiproject/data/model/LoginRequest.kt,d\c\dc7165c36de465a20868ba9b2566b76b31304174
+‚
+Rapp/src/main/java/com/dabellan/yugiproject/presentation/composables/LoginScreen.kt,b\9\b947875a787f4dacc488c4bc60da6e81cbf380a3
+„
+Tapp/src/main/java/com/dabellan/yugiproject/presentation/register/RegisterActivity.kt,4\f\4f96b6ee0897f9e96d099bfbbbf38efb33139c97
+…
+Uapp/src/main/java/com/dabellan/yugiproject/presentation/register/RegisterViewModel.kt,5\2\520f349bc58d410edb1f2fd7aaabda7cbf17fe9c
+…
+Uapp/src/main/java/com/dabellan/yugiproject/presentation/composables/RegisterScreen.kt,0\a\0abc4a07621e519d025fcec6de9ea57d18a8f0b7

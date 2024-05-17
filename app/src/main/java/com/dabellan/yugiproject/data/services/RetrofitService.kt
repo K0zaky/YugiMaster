@@ -7,7 +7,9 @@ import com.dabellan.yugiproject.data.model.MagicaItem
 import com.dabellan.yugiproject.data.model.MonstruoItem
 import com.dabellan.yugiproject.data.model.TrampaItem
 import com.dabellan.yugiproject.data.model.UsuarioItem
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface RetrofitService {
@@ -16,6 +18,9 @@ interface RetrofitService {
 
     @GET(Constants.USERS_PATH)
     suspend fun getUsers(): List<UsuarioItem>
+
+    @POST(Constants.USERS_PATH)
+    suspend fun crearUsuario(@Body usuario: UsuarioItem): UsuarioItem
 
     @GET(Constants.MONSTRUOS_PATH)
     suspend fun getMonstruos(): List<MonstruoItem>

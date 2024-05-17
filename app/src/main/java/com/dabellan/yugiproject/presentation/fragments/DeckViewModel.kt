@@ -12,7 +12,7 @@ class DeckViewModel : ViewModel() {
 
     private val _allCards = MutableLiveData<List<CartaItem>>()
     val allCards: LiveData<List<CartaItem>> = _allCards
-    
+
 
     fun getAllCards() = viewModelScope.launch {
         val cards = apiService.getCartas()
