@@ -17,12 +17,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.asFlow
-import androidx.navigation.NavController
 import com.dabellan.yugiproject.presentation.cart_detail.CartDetailActivity
 import com.dabellan.yugiproject.presentation.composables.CardItem
 
 @Composable
-fun HomeFragment(homeViewModel: HomeViewModel, navController: NavController) {
+fun HomeFragment(homeViewModel: HomeViewModel) {
 
     val lifecycleOwner = LocalLifecycleOwner.current
     val context = LocalContext.current
@@ -47,7 +46,7 @@ fun HomeFragment(homeViewModel: HomeViewModel, navController: NavController) {
         Spacer(modifier = Modifier.size(64.dp))
 
         allCards.value.forEach { carta ->
-            CardItem(carta, navController) { cartaId ->
+            CardItem(carta) { cartaId ->
                 onCardClick(cartaId, context)
             }
         }

@@ -5,10 +5,9 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import androidx.navigation.NavController
 
 @Composable
-fun DeckFragment(deckViewModel: DeckViewModel, navController: NavController) {
+fun DeckFragment(deckViewModel: DeckViewModel) {
 
     val lifecycleOwner = LocalLifecycleOwner.current
 

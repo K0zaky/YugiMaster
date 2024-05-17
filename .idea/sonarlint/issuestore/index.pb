@@ -55,3 +55,5 @@ r
 Bapp/src/main/java/com/dabellan/yugiproject/data/model/CartaItem.kt,3\6\36ae6d1c849429ffdd16abbf7a0a8f2ed86858a7
 s
 Capp/src/main/java/com/dabellan/yugiproject/data/model/TrampaItem.kt,f\b\fb1ba6254620c74d624bc30f8ec1c4b203b6f06b
+w
+Gapp/src/main/java/com/dabellan/yugiproject/data/instances/ApiService.kt,5\6\56832351c870047002e6b51a5451c041b27cfc3e

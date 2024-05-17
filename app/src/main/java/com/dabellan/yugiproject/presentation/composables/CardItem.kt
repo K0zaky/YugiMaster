@@ -17,12 +17,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.dabellan.yugiproject.data.model.CartaItem
 
 @Composable
-fun CardItem(carta: CartaItem, navController: NavController, onClick: (Int) -> Unit) {
+fun CardItem(carta: CartaItem, onClick: (Int) -> Unit) {
     val imageUrl = carta.imagen.replace("\\", "")
     Card(
         modifier = Modifier

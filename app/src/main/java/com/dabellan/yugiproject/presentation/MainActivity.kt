@@ -25,11 +25,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.dabellan.yugiproject.presentation.fragments.DeckFragment
+import com.dabellan.yugiproject.presentation.fragments.DeckViewModel
 import com.dabellan.yugiproject.presentation.fragments.HomeFragment
 import com.dabellan.yugiproject.presentation.fragments.HomeViewModel
 
 class MainActivity : ComponentActivity() {
     private val homeViewModel: HomeViewModel by viewModels()
+    private val deckViewModel: DeckViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +71,8 @@ class MainActivity : ComponentActivity() {
                 navController = navController,
                 startDestination = CurrentScreen.Home.route
             ) {
-                composable(CurrentScreen.Home.route) { HomeFragment(homeViewModel, navController) }
+                composable(CurrentScreen.Home.route) { HomeFragment(homeViewModel) }
+                composable(CurrentScreen.Deck.route) { DeckFragment(deckViewModel) }
             }
         }
     }
