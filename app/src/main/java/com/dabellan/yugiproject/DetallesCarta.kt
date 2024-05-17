@@ -32,7 +32,7 @@ fun DetallesCarta(cartaId: String) {
         if (monstruo != null) {
             cartaNombre.value = monstruo.nombre
             cartaImagen.value = monstruo.imagen
-            cartaTipo.value = monstruo.tipo_monstruo
+            cartaTipo.value = monstruo.tipoMonstruo
             return@LaunchedEffect
         }
 
@@ -42,7 +42,7 @@ fun DetallesCarta(cartaId: String) {
         if (magica != null) {
             cartaNombre.value = magica.nombre
             cartaImagen.value = magica.imagen
-            cartaTipo.value = magica.tipo_magia
+            cartaTipo.value = magica.tipoMagia
             return@LaunchedEffect
         }
 
@@ -52,7 +52,7 @@ fun DetallesCarta(cartaId: String) {
         if (trampa != null) {
             cartaNombre.value = trampa.nombre
             cartaImagen.value = trampa.imagen
-            cartaTipo.value = trampa.tipo_trampa
+            cartaTipo.value = trampa.tipoTrampa
             return@LaunchedEffect
         }
 

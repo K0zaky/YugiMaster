@@ -45,3 +45,13 @@ x
 Happ/src/main/java/com/dabellan/yugiproject/presentation/FirstFragment.kt,b\0\b0b63ccc01ec5ac884c7852f5d09a971bdc8e328
 y
 Iapp/src/main/java/com/dabellan/yugiproject/presentation/SecondFragment.kt,5\6\5601f008e996cc942bf9e5f90bc0d0a90e1621c7
+‰
+Yapp/src/main/java/com/dabellan/yugiproject/presentation/cart_detail/CartDetailActivity.kt,5\2\52416bc6c0fe1e74d2c09eaad986ecbda91febe0
+Š
+Zapp/src/main/java/com/dabellan/yugiproject/presentation/cart_detail/CartDetailViewModel.kt,1\c\1cf08f31ffc46facb4a155c48c4b49e8114d5d4d
+s
+Capp/src/main/java/com/dabellan/yugiproject/data/model/MagicaItem.kt,3\8\3813ee37f6291f88cffc6d9a53146b95c7bec296
+r
+Bapp/src/main/java/com/dabellan/yugiproject/data/model/CartaItem.kt,3\6\36ae6d1c849429ffdd16abbf7a0a8f2ed86858a7
+s
+Capp/src/main/java/com/dabellan/yugiproject/data/model/TrampaItem.kt,f\b\fb1ba6254620c74d624bc30f8ec1c4b203b6f06b

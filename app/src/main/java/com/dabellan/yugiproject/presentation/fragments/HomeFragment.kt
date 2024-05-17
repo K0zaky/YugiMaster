@@ -18,7 +18,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.asFlow
 import androidx.navigation.NavController
-import com.dabellan.yugiproject.presentation.CartDetailActivity
+import com.dabellan.yugiproject.presentation.cart_detail.CartDetailActivity
 import com.dabellan.yugiproject.presentation.composables.CardItem
 
 @Composable
@@ -62,9 +62,7 @@ fun HomeFragment(homeViewModel: HomeViewModel, navController: NavController) {
 
 
 private fun onCardClick(cartaId: Int, context: Context) {
-    cartaId.toString()
     val intent = Intent(context, CartDetailActivity::class.java)
     intent.putExtra("cartId", cartaId)
     context.startActivity(intent)
-    //navController.navigate("detallesCartaScreen/$cartaId")
 }
