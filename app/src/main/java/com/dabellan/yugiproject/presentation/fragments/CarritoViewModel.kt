@@ -9,7 +9,7 @@ import com.dabellan.yugiproject.data.model.DeckItem
 import com.dabellan.yugiproject.data.model.LogedUser
 import kotlinx.coroutines.launch
 
-class DeckViewModel : ViewModel() {
+class CarritoViewModel : ViewModel() {
 
     private val _allDecks = MutableLiveData<List<DeckItem>>()
     val allDecks: LiveData<List<DeckItem>> = _allDecks

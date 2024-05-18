@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dabellan.yugiproject.data.instances.RetrofitInstance
+import com.dabellan.yugiproject.data.model.LogedUser
 import com.dabellan.yugiproject.data.model.UsuarioItem
 import kotlinx.coroutines.launch
 
@@ -20,6 +21,7 @@ class LoginViewModel : ViewModel() {
                 val usuarios = RetrofitInstance.api.getUsers()
                 val datos = usuarios.find { it.correo == correo && it.contrasenya == contrasenya }
                 if (datos != null) {
+                    LogedUser.userId = datos.id
                     _loginState.value = LoginState.Success(datos)
                 } else {
                     _loginState.value = LoginState.Error("Datos incorrectos")

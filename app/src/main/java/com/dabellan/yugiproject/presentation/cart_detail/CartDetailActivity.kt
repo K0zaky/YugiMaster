@@ -57,7 +57,6 @@ class CartDetailActivity : ComponentActivity() {
             Text(text = normalizarTexto(monstruoItem.tipoMonstruo))
             Text(text = normalizarTexto(monstruoItem.atributo))
             Text(text = normalizarTexto(monstruoItem.efecto))
-            //Text(text = normalizarTexto(cartaNombre.value.toString()))
             CoilImage(url = monstruoItem.imagen, modifier = Modifier.size(800.dp))
         }
     }

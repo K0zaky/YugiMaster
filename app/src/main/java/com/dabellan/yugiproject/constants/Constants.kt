@@ -19,6 +19,9 @@ object Constants {
 
     const val TRAMPAID_PATH = "/trampa/{id}"
 
+    const val USERIDDECKS_PATH = "/usuario/{id}/decks"
+
+    const val CARTASDECKID_PATH = "deck/{deck_id}/cartas"
 
 
 

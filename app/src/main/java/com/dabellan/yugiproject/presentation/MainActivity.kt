@@ -1,5 +1,6 @@
 package com.dabellan.yugiproject.presentation
 
+import DeckFragment
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,6 +11,7 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -25,7 +27,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.dabellan.yugiproject.presentation.fragments.DeckFragment
+import com.dabellan.yugiproject.presentation.fragments.CarritoFragment
+import com.dabellan.yugiproject.presentation.fragments.CarritoViewModel
 import com.dabellan.yugiproject.presentation.fragments.DeckViewModel
 import com.dabellan.yugiproject.presentation.fragments.HomeFragment
 import com.dabellan.yugiproject.presentation.fragments.HomeViewModel
@@ -33,6 +36,7 @@ import com.dabellan.yugiproject.presentation.fragments.HomeViewModel
 class MainActivity : ComponentActivity() {
     private val homeViewModel: HomeViewModel by viewModels()
     private val deckViewModel: DeckViewModel by viewModels()
+    private val carritoViewModel: CarritoViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,9 +54,9 @@ class MainActivity : ComponentActivity() {
         val screens = listOf(
             CurrentScreen.Home,
 
-                CurrentScreen.Deck,
-            /*
-                CurrentScreen.Settings*/
+            CurrentScreen.Deck,
+
+            CurrentScreen.Carrito
         )
 
         Scaffold(
@@ -73,6 +77,7 @@ class MainActivity : ComponentActivity() {
             ) {
                 composable(CurrentScreen.Home.route) { HomeFragment(homeViewModel) }
                 composable(CurrentScreen.Deck.route) { DeckFragment(deckViewModel) }
+                composable(CurrentScreen.Carrito.route) { CarritoFragment(carritoViewModel) }
             }
         }
     }
@@ -107,8 +112,7 @@ class MainActivity : ComponentActivity() {
     sealed class CurrentScreen(val route: String, val icon: ImageVector) {
         data object Home : CurrentScreen("homeFragment", Icons.Filled.Home)
         data object Deck : CurrentScreen("deckFragment", Icons.Filled.Info)
-    /*
-    data object Settings : CurrentScreen(Constants.SETTINGS, Icons.Filled.Settings)*/
+        data object Carrito : CurrentScreen("carritoFragment", Icons.Filled.Settings)
     }
 }
 

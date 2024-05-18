@@ -3,6 +3,7 @@ package com.dabellan.yugiproject.data.services
 
 import com.dabellan.yugiproject.constants.Constants
 import com.dabellan.yugiproject.data.model.CartaItem
+import com.dabellan.yugiproject.data.model.DeckItem
 import com.dabellan.yugiproject.data.model.MagicaItem
 import com.dabellan.yugiproject.data.model.MonstruoItem
 import com.dabellan.yugiproject.data.model.TrampaItem
@@ -39,4 +40,10 @@ interface RetrofitService {
 
     @GET(Constants.TRAMPAID_PATH)
     suspend fun getTrampa(@Path("id") id: String): TrampaItem
+
+    @GET(Constants.CARTASDECKID_PATH)
+    suspend fun getCartasInDeck(@Path("id") id: String): List<CartaItem>
+
+    @GET(Constants.USERIDDECKS_PATH)
+    suspend fun getUserDecks(@Path("id") id: String): List<DeckItem>
 }

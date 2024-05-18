@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
@@ -18,10 +19,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.asFlow
 import com.dabellan.yugiproject.presentation.cart_detail.CartDetailActivity
-import com.dabellan.yugiproject.presentation.composables.CardItem
 
 @Composable
-fun HomeFragment(homeViewModel: HomeViewModel) {
+fun CarritoFragment(carritoViewModel: CarritoViewModel) {
 
     val lifecycleOwner = LocalLifecycleOwner.current
     val context = LocalContext.current
@@ -29,7 +29,7 @@ fun HomeFragment(homeViewModel: HomeViewModel) {
     DisposableEffect(lifecycleOwner) {
         val lifecycleObserver = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME) {
-                homeViewModel.getAllCards()
+                carritoViewModel.getAllDecks()
             }
         }
         lifecycleOwner.lifecycle.addObserver(lifecycleObserver)
@@ -38,16 +38,17 @@ fun HomeFragment(homeViewModel: HomeViewModel) {
         }
     }
 
-    val allCards = homeViewModel.allCards.asFlow().collectAsState(initial = emptyList())
+    val allCards = carritoViewModel.allDecks.asFlow().collectAsState(initial = emptyList())
 
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Spacer(modifier = Modifier.size(64.dp))
-
+        Text(text = "carrito")
+/*
         allCards.value.forEach { carta ->
             CardItem(carta) { cartaId ->
                 onCardClick(cartaId, context)
             }
-        }
+        }*/
         Spacer(modifier = Modifier.size(56.dp))
 
     }
