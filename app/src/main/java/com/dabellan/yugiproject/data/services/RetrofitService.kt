@@ -11,6 +11,7 @@ import com.dabellan.yugiproject.data.model.UsuarioItem
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface RetrofitService {
@@ -42,7 +43,10 @@ interface RetrofitService {
     suspend fun getTrampa(@Path("id") id: String): TrampaItem
 
     @GET(Constants.CARTASDECKID_PATH)
-    suspend fun getCartasInDeck(@Path("id") id: String): List<CartaItem>
+    suspend fun getCartasInDeck(@Path("deck_id") id: String): List<CartaItem>
+
+    @PUT(Constants.ANYADIRCARTADECK_PATH)
+    suspend fun anyadirCartaDeck(@Body carta: CartaItem): CartaItem
 
     @GET(Constants.USERIDDECKS_PATH)
     suspend fun getUserDecks(@Path("id") id: String): List<DeckItem>

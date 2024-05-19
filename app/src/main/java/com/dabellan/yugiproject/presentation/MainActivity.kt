@@ -11,7 +11,8 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -32,11 +33,14 @@ import com.dabellan.yugiproject.presentation.fragments.CarritoViewModel
 import com.dabellan.yugiproject.presentation.fragments.DeckViewModel
 import com.dabellan.yugiproject.presentation.fragments.HomeFragment
 import com.dabellan.yugiproject.presentation.fragments.HomeViewModel
+import com.dabellan.yugiproject.presentation.fragments.PerfilFragment
+import com.dabellan.yugiproject.presentation.fragments.PerfilViewModel
 
 class MainActivity : ComponentActivity() {
     private val homeViewModel: HomeViewModel by viewModels()
     private val deckViewModel: DeckViewModel by viewModels()
     private val carritoViewModel: CarritoViewModel by viewModels()
+    private val perfilViewModel: PerfilViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +60,9 @@ class MainActivity : ComponentActivity() {
 
             CurrentScreen.Deck,
 
-            CurrentScreen.Carrito
+            CurrentScreen.Carrito,
+
+            CurrentScreen.Perfil
         )
 
         Scaffold(
@@ -78,6 +84,7 @@ class MainActivity : ComponentActivity() {
                 composable(CurrentScreen.Home.route) { HomeFragment(homeViewModel) }
                 composable(CurrentScreen.Deck.route) { DeckFragment(deckViewModel) }
                 composable(CurrentScreen.Carrito.route) { CarritoFragment(carritoViewModel) }
+                composable(CurrentScreen.Perfil.route) { PerfilFragment(perfilViewModel) }
             }
         }
     }
@@ -112,7 +119,8 @@ class MainActivity : ComponentActivity() {
     sealed class CurrentScreen(val route: String, val icon: ImageVector) {
         data object Home : CurrentScreen("homeFragment", Icons.Filled.Home)
         data object Deck : CurrentScreen("deckFragment", Icons.Filled.Info)
-        data object Carrito : CurrentScreen("carritoFragment", Icons.Filled.Settings)
+        data object Carrito : CurrentScreen("carritoFragment", Icons.Filled.ShoppingCart)
+        data object Perfil : CurrentScreen("perfilFragment", Icons.Filled.Person)
     }
 }
 

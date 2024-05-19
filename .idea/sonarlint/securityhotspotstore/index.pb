@@ -71,3 +71,13 @@ Oapp/src/main/java/com/dabellan/yugiproject/presentation/composables/DeckItem.kt
 Tapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/CarritoFragment.kt,d\6\d6cea2186124d49c0b3c9573eb30ca1de26dd539
 …
 Uapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/CarritoViewModel.kt,5\4\544a29178494f40f7f5a74ca78ec041f49467475
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+ƒ
+Sapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/PerfilFragment.kt,3\a\3a3303b7f28ba5422bbe3a631db44eacaea29ea6
+„
+Tapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/PerfilViewModel.kt,b\4\b487ef18df0b31f74c35c9203fabbede2e438c9e
+k
+;app/src/main/java/com/dabellan/yugiproject/ui/theme/Type.kt,d\c\dc7f59f3acf946be377acfe06fa0459a9940818e
+l
+<app/src/main/java/com/dabellan/yugiproject/ui/theme/Color.kt,e\c\ecc410af53f21ec97505c6c7bb64bcb8e018837d
