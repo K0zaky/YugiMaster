@@ -16,6 +16,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.deck_detail.AddCartaActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Yugiproject" />
+        <activity
             android:name=".presentation.cart_detail.CartDetailActivity"
             android:exported="false"
             android:theme="@style/Theme.Yugiproject" />

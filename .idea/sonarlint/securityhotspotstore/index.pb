@@ -81,3 +81,7 @@ k
 ;app/src/main/java/com/dabellan/yugiproject/ui/theme/Type.kt,d\c\dc7f59f3acf946be377acfe06fa0459a9940818e
 l
 <app/src/main/java/com/dabellan/yugiproject/ui/theme/Color.kt,e\c\ecc410af53f21ec97505c6c7bb64bcb8e018837d
+‡
+Wapp/src/main/java/com/dabellan/yugiproject/presentation/deck_detail/AddCartaActivity.kt,4\2\425f90b8f5a3bc5db79278888197d2e859f4cd78
+ˆ
+Xapp/src/main/java/com/dabellan/yugiproject/presentation/deck_detail/AddCartaViewModel.kt,2\4\24ea27bbaa4528682dbe9560c4e7ec472a60e241

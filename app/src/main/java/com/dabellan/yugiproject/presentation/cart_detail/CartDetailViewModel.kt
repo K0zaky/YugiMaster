@@ -45,7 +45,7 @@ class CartDetailViewModel : ViewModel() {
                     }
                 }
             } catch (e: Exception) {
-                // Manejar errores
+                // todo: Manejar errores
             }
         }
     }

@@ -23,7 +23,7 @@ object Constants {
 
     const val CARTASDECKID_PATH = "/deck/{deck_id}/cartas"
 
-    const val ANYADIRCARTADECK_PATH = "/deck/{deck_id}"
+    const val ANYADIRCARTADECK_PATH = "/deck-anyadir/{deck_id}"
 
 
 
