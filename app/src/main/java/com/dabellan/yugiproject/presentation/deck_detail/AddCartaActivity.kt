@@ -1,6 +1,7 @@
 package com.dabellan.yugiproject.presentation.deck_detail
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dabellan.yugiproject.data.instances.RetrofitInstance
 import com.dabellan.yugiproject.data.model.CartaItem
+import com.dabellan.yugiproject.data.services.CartaDeckBody
 import com.dabellan.yugiproject.presentation.composables.CoilImage
 import com.dabellan.yugiproject.presentation.composables.normalizarTexto
 import kotlinx.coroutines.CoroutineScope
@@ -30,28 +32,30 @@ import kotlinx.coroutines.withContext
 
 class AddCartaActivity : ComponentActivity() {
     private val viewModel: AddCartaViewModel by viewModels()
-    private lateinit var deck_id: String
+    private var deck_id: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        deck_id = intent.getIntExtra("deck_id", -1).toString()
+        deck_id = intent.getIntExtra("deckId", -1)
+        Log.i("deck", deck_id.toString())
         viewModel.getAllCartas()
 
         viewModel.cartaItems.observe(this) { cartaItems ->
             if (cartaItems != null) {
                 setContent {
                     CartaListContent(cartaItems) { selectedCarta ->
-                        addCartaToDeck(deck_id, selectedCarta.id.toString())
+                        addCartaToDeck(deck_id, selectedCarta.id)
                     }
                 }
             }
         }
     }
 
-    private fun addCartaToDeck(deck_id: String, id_carta: String) {
+    private fun addCartaToDeck(deck_id: Int, id_carta: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = RetrofitInstance.api.anyadirCartaDeck(deck_id, id_carta)
+                val response = RetrofitInstance.api.anyadirCartaDeck(deck_id, CartaDeckBody(id_carta))
+                Toast.makeText(this@AddCartaActivity, "Carta añadida con éxito", Toast.LENGTH_SHORT).show()
                 withContext(Dispatchers.Main) {
                     if (response != null) {
                         Toast.makeText(this@AddCartaActivity, "Carta añadida con éxito", Toast.LENGTH_SHORT).show()

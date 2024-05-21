@@ -20,7 +20,7 @@ class DeckDetailViewModel() : ViewModel() {
     private val _error = MutableLiveData<String?>()
 
 
-    fun getDeckContentById(deckId: String) {
+    fun getDeckContentById(deckId: Int) {
         viewModelScope.launch {
             try {
                 val cartaItems = getDeckContentFromApi(deckId)
@@ -35,7 +35,7 @@ class DeckDetailViewModel() : ViewModel() {
         }
     }
 
-    private suspend fun getDeckContentFromApi(deckId: String): List<CartaItem>? {
+    private suspend fun getDeckContentFromApi(deckId: Int): List<CartaItem>? {
         return withContext(Dispatchers.IO) {
             try {
                 apiService.getCartasInDeck(deckId)

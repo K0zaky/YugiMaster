@@ -5,17 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dabellan.yugiproject.data.instances.apiService
-import com.dabellan.yugiproject.data.model.DeckItem
 import com.dabellan.yugiproject.data.model.LogedUser
+import com.dabellan.yugiproject.data.model.UsuarioItem
 import kotlinx.coroutines.launch
 
 class PerfilViewModel : ViewModel() {
-    private val _allDecks = MutableLiveData<List<DeckItem>>()
-    val allDecks: LiveData<List<DeckItem>> = _allDecks
+    private val _userData = MutableLiveData<UsuarioItem>()
+    val userData: LiveData<UsuarioItem> = _userData
 
-    fun getAllDecks() = viewModelScope.launch {
+    fun getUserData() {
         val id = LogedUser.userId.toString()
-        val decks = apiService.getUserDecks(id)
-        _allDecks.postValue(decks)
+        viewModelScope.launch {
+            val data = apiService.getUsuario(id)
+            _userData.value = data
+        }
     }
 }

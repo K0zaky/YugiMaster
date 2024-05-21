@@ -1,23 +1,30 @@
 package com.dabellan.yugiproject.presentation.fragments
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.dabellan.yugiproject.data.instances.apiService
-import com.dabellan.yugiproject.data.model.DeckItem
-import com.dabellan.yugiproject.data.model.LogedUser
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class CarritoViewModel : ViewModel() {
 
-    private val _allDecks = MutableLiveData<List<DeckItem>>()
-    val allDecks: LiveData<List<DeckItem>> = _allDecks
+    private val _carritoItems = MutableStateFlow<List<String>>(emptyList())
+    val carritoItems: StateFlow<List<String>> = _carritoItems.asStateFlow()
 
-    fun getAllDecks() = viewModelScope.launch {
-        val id = LogedUser.userId.toString()
-        val decks = apiService.getUserDecks(id)
-        _allDecks.postValue(decks)
+    fun addToCarrito(itemName: String) {
+        val currentList = _carritoItems.value.toMutableList()
+        currentList.add(itemName)
+        _carritoItems.value = currentList
+        println("Elementos en el carrito: $currentList")
     }
 
+/*
+    fun removeFromCarrito(itemName: String) {
+        val currentList = _carritoItems.value.orEmpty().toMutableList()
+        currentList.remove(itemName)
+        _carritoItems.value = currentList
+    }
+
+    fun clearCarrito() {
+        _carritoItems.value = emptyList()
+    }*/
 }

@@ -5,6 +5,8 @@ object Constants {
 
     const val USERS_PATH = "/usuarios"
 
+    const val USERID_PATH = "/usuario/{id}"
+
     const val CARTAS_PATH = "/cartas"
 
     const val MONSTRUOS_PATH = "/monstruos"

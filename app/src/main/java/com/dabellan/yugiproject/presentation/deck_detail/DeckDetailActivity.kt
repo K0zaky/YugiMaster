@@ -21,11 +21,11 @@ import com.dabellan.yugiproject.presentation.composables.normalizarTexto
 
 class DeckDetailActivity : ComponentActivity() {
     private val viewModel: DeckDetailViewModel by viewModels()
-    private lateinit var deckId: String
+    private var deckId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        deckId = intent.getIntExtra("deckId", -1).toString()
+        deckId = intent.getIntExtra("deckId", -1)
         viewModel.getDeckContentById(deckId)
 
         viewModel.cartaItems.observe(this) { cartaItems ->
@@ -63,9 +63,10 @@ class DeckDetailActivity : ComponentActivity() {
                 }
             }
 
-            Button(onClick = onAddCartaClick, modifier = Modifier.padding(16.dp)) {
-                Text(text = "Añadir Carta")
-            }
+        }
+
+        Button(onClick = onAddCartaClick, modifier = Modifier.padding(16.dp)) {
+            Text(text = "Añadir Carta")
         }
     }
 

@@ -8,14 +8,15 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.asFlow
+import com.dabellan.yugiproject.presentation.composables.CoilImage
 
 @Composable
 fun PerfilFragment(perfilViewModel: PerfilViewModel) {
@@ -25,7 +26,7 @@ fun PerfilFragment(perfilViewModel: PerfilViewModel) {
     DisposableEffect(lifecycleOwner) {
         val lifecycleObserver = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME) {
-                perfilViewModel.getAllDecks()
+                perfilViewModel.getUserData()
             }
         }
         lifecycleOwner.lifecycle.addObserver(lifecycleObserver)
@@ -34,18 +35,17 @@ fun PerfilFragment(perfilViewModel: PerfilViewModel) {
         }
     }
 
-    val allCards = perfilViewModel.allDecks.asFlow().collectAsState(initial = emptyList())
+    val userData by perfilViewModel.userData.observeAsState()
 
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Spacer(modifier = Modifier.size(64.dp))
-        Text(text = "perfil")
-        /*
-                allCards.value.forEach { carta ->
-                    CardItem(carta) { cartaId ->
-                        onCardClick(cartaId, context)
-                    }
-                }*/
-        Spacer(modifier = Modifier.size(56.dp))
 
+        userData?.let { user ->
+            CoilImage(url = user.imagen, modifier = Modifier.size(200.dp))
+            Text(text = "Nombre: ${user.nick}")
+            Text(text = "Correo electrónico: ${user.correo}")
+        }
+
+        Spacer(modifier = Modifier.size(56.dp))
     }
 }

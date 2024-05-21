@@ -85,3 +85,5 @@ l
 Wapp/src/main/java/com/dabellan/yugiproject/presentation/deck_detail/AddCartaActivity.kt,4\2\425f90b8f5a3bc5db79278888197d2e859f4cd78
 ˆ
 Xapp/src/main/java/com/dabellan/yugiproject/presentation/deck_detail/AddCartaViewModel.kt,2\4\24ea27bbaa4528682dbe9560c4e7ec472a60e241
+y
+Iapp/src/main/java/com/dabellan/yugiproject/data/services/CartaDeckBody.kt,d\f\dfa6d2eb9db22ab48463a4c440d506d94d68879f
