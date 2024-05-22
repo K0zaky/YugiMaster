@@ -53,7 +53,9 @@ interface RetrofitService {
     @PUT(Constants.ANYADIRCARTADECK_PATH)
     suspend fun anyadirCartaDeck(@Path("deck_id") deck_id: Int, @Body data: CartaDeckBody): CartaItem
 
-
     @GET(Constants.USERIDDECKS_PATH)
     suspend fun getUserDecks(@Path("id") id: String): List<DeckItem>
+
+    @POST(Constants.DECKS_PATH)
+    suspend fun newDeck(@Body newDeck: DeckItem): DeckItem
 }

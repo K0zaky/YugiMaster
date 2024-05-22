@@ -54,6 +54,7 @@ android {
 dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.ui.text.google.fonts)
     val retrofitVersion = "2.9.0"
     val coroutinesVersion = "1.6.4"
     val lifecycleruntimektxVersion = "2.5.1"
@@ -118,6 +119,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:1.0.5")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
     implementation("androidx.compose.runtime:runtime-livedata:1.0.5")
+    implementation("androidx.compose.foundation:foundation-layout-android:1.6.7")
 
 
 

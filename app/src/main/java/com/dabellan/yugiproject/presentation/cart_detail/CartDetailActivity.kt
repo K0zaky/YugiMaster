@@ -4,13 +4,18 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.dabellan.yugiproject.data.model.MagicaItem
 import com.dabellan.yugiproject.data.model.MonstruoItem
 import com.dabellan.yugiproject.data.model.TrampaItem
@@ -55,15 +60,33 @@ class CartDetailActivity : ComponentActivity() {
 
     @Composable
     fun MonstruoContent(monstruoItem: MonstruoItem) {
-        Column {
-            Text(text = normalizarTexto(monstruoItem.nombre))
-            Text(text = normalizarTexto(monstruoItem.tipoMonstruo))
-            Text(text = normalizarTexto(monstruoItem.atributo))
-            Text(text = normalizarTexto(monstruoItem.efecto))
-            CoilImage(url = monstruoItem.imagen, modifier = Modifier.size(500.dp))
-            Button(onClick = {
-                carritoViewModel.addToCarrito(monstruoItem.nombre)
-            }) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            CoilImage(
+                url = monstruoItem.imagen,
+                modifier = Modifier
+                    .size(450.dp)
+                    .padding(bottom = 16.dp)
+            )
+            Text(
+                text = normalizarTexto(monstruoItem.nombre),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            Column(modifier = Modifier.padding(bottom = 8.dp)) {
+                Text(text = normalizarTexto(monstruoItem.tipoMonstruo), fontSize = 16.sp)
+                Text(text = normalizarTexto(monstruoItem.atributo), fontSize = 16.sp)
+                Text(text = normalizarTexto(monstruoItem.efecto), fontSize = 16.sp)
+            }
+            Button(
+                onClick = {
+                    carritoViewModel.addToCarrito(monstruoItem.nombre)
+                },
+                modifier = Modifier.padding(bottom = 16.dp)
+            ) {
                 Text(text = "Añadir al carrito")
             }
         }
@@ -71,14 +94,32 @@ class CartDetailActivity : ComponentActivity() {
 
     @Composable
     fun MagicaContent(magicaItem: MagicaItem) {
-        Column {
-            Text(text = normalizarTexto(magicaItem.nombre))
-            Text(text = normalizarTexto(magicaItem.tipoMagia))
-            Text(text = normalizarTexto(magicaItem.efecto))
-            CoilImage(url = magicaItem.imagen, modifier = Modifier.size(500.dp))
-            Button(onClick = {
-                carritoViewModel.addToCarrito(magicaItem.nombre)
-            }) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            CoilImage(
+                url = magicaItem.imagen,
+                modifier = Modifier
+                    .size(450.dp)
+                    .padding(bottom = 16.dp)
+            )
+            Text(
+                text = normalizarTexto(magicaItem.nombre),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            Column(modifier = Modifier.padding(bottom = 8.dp)) {
+                Text(text = normalizarTexto(magicaItem.tipoMagia), fontSize = 16.sp)
+                Text(text = normalizarTexto(magicaItem.efecto), fontSize = 16.sp)
+            }
+            Button(
+                onClick = {
+                    carritoViewModel.addToCarrito(magicaItem.nombre)
+                },
+                modifier = Modifier.padding(bottom = 16.dp)
+            ) {
                 Text(text = "Añadir al carrito")
             }
         }
@@ -86,14 +127,32 @@ class CartDetailActivity : ComponentActivity() {
 
     @Composable
     fun TrampaContent(trampaItem: TrampaItem) {
-        Column {
-            Text(text = normalizarTexto(trampaItem.nombre))
-            Text(text = normalizarTexto(trampaItem.tipoTrampa))
-            Text(text = normalizarTexto(trampaItem.efecto))
-            CoilImage(url = trampaItem.imagen, modifier = Modifier.size(500.dp))
-            Button(onClick = {
-                carritoViewModel.addToCarrito(trampaItem.nombre)
-            }) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            CoilImage(
+                url = trampaItem.imagen,
+                modifier = Modifier
+                    .size(450.dp)
+                    .padding(bottom = 16.dp)
+            )
+            Text(
+                text = normalizarTexto(trampaItem.nombre),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            Column(modifier = Modifier.padding(bottom = 8.dp)) {
+                Text(text = normalizarTexto(trampaItem.tipoTrampa), fontSize = 16.sp)
+                Text(text = normalizarTexto(trampaItem.efecto), fontSize = 16.sp)
+            }
+            Button(
+                onClick = {
+                    carritoViewModel.addToCarrito(trampaItem.nombre)
+                },
+                modifier = Modifier.padding(bottom = 16.dp)
+            ) {
                 Text(text = "Añadir al carrito")
             }
         }

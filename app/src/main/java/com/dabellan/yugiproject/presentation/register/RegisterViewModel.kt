@@ -7,26 +7,31 @@ import androidx.lifecycle.viewModelScope
 import com.dabellan.yugiproject.data.instances.RetrofitInstance
 import com.dabellan.yugiproject.data.model.UsuarioItem
 import kotlinx.coroutines.launch
-
-sealed class RegisterState {
-    object Loading : RegisterState()
-    data class Success(val usuario: UsuarioItem) : RegisterState()
-    data class Error(val message: String) : RegisterState()
-}
+import retrofit2.HttpException
 
 class RegisterViewModel : ViewModel() {
+
     private val _registerState = MutableLiveData<RegisterState>()
     val registerState: LiveData<RegisterState> = _registerState
 
-    fun register(usuario: UsuarioItem) {
+    fun register(nick: String, correo: String, contrasenya: String, imagen: String) {
         _registerState.value = RegisterState.Loading
         viewModelScope.launch {
             try {
-                val newUser = RetrofitInstance.api.crearUsuario(usuario)
-                _registerState.value = RegisterState.Success(newUser)
+                val usuario = UsuarioItem(nick = nick, correo = correo, contrasenya = contrasenya, imagen = imagen)
+                val result = RetrofitInstance.api.crearUsuario(usuario)
+                _registerState.value = RegisterState.Success(result)
+            } catch (e: HttpException) {
+                _registerState.value = RegisterState.Error("Error al registrar usuario")
             } catch (e: Exception) {
-                _registerState.value = RegisterState.Error(e.message ?: "Error desconocido")
+                _registerState.value = RegisterState.Error("Error de red")
             }
         }
     }
+}
+
+sealed class RegisterState {
+    data class Success(val usuario: UsuarioItem) : RegisterState()
+    data class Error(val message: String) : RegisterState()
+    object Loading : RegisterState()
 }

@@ -1,3 +1,4 @@
 
 akotlin:S6310'"Avoid hardcoded dispatchers.(ÏÃâ8Ö£½Œù1J$c00cf0cf-6f8c-4b42-a4e5-18c92b2d2cdb
+pkotlin:S6311'"QRemove this dispatcher. It is pointless when used with only suspending functions.(ÏÃâ8¤…›ùù1
 ckotlin:S6529"DReplace null check and collection size check with "!isNullOrEmpty()"(­Ùå›8‘ù¢×ù1

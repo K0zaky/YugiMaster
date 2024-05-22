@@ -23,9 +23,13 @@ object Constants {
 
     const val USERIDDECKS_PATH = "/usuario/{id}/decks"
 
+    const val DECKS_PATH = "/decks"
+
     const val CARTASDECKID_PATH = "/deck/{deck_id}/cartas"
 
     const val ANYADIRCARTADECK_PATH = "/deck-anyadir/{deck_id}"
+
+    const val BORRARCARTASDECK = "/deck/{deck_id}/carta/{carta_id}"
 
 
 

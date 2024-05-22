@@ -2,14 +2,17 @@ package com.example.yugiproject
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material.TextButton
+import androidx.compose.material3.Surface
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,7 +32,8 @@ import com.dabellan.yugiproject.presentation.login.LoginState
 fun LoginScreen(
     loginState: LoginState?,
     onLogin: (String, String) -> Unit,
-    onNavigateToMain: () -> Unit
+    onNavigateToMain: () -> Unit,
+    onRegisterClick: () -> Unit
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -81,6 +85,16 @@ fun LoginScreen(
             ) {
                 Text(text = "Iniciar sesión")
             }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            TextButton(
+                onClick = { onRegisterClick() },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Registrar")
+            }
+
             loginState?.let {
                 when (it) {
                     is LoginState.Loading -> {
