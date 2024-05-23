@@ -89,3 +89,5 @@ y
 Iapp/src/main/java/com/dabellan/yugiproject/data/services/CartaDeckBody.kt,d\f\dfa6d2eb9db22ab48463a4c440d506d94d68879f
 l
 <app/src/main/java/com/dabellan/yugiproject/ui/theme/Theme.kt,5\b\5bc7cdd2b25e99a0f166c5dd0db7db5e1e54f0ef
+‡
+Wapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/CarritoApplication.kt,f\d\fddc8d120c481f8cc55310fe84fa5ddca7832d71

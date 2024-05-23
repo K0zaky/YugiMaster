@@ -17,8 +17,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 @Composable
 fun CarritoFragment(carritoViewModel: CarritoViewModel = viewModel()) {
 
-    val carritoItems by carritoViewModel.carritoItems.collectAsState(initial = emptyList())
-    println("Elementos en el carrito: $carritoItems")
+    val carritoItems by carritoViewModel.carritoItems.collectAsState()
 
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Spacer(modifier = Modifier.size(64.dp))

@@ -7,14 +7,13 @@ import kotlinx.coroutines.flow.asStateFlow
 
 class CarritoViewModel : ViewModel() {
 
-    private val _carritoItems = MutableStateFlow<List<String>>(emptyList())
+    private val _carritoItems = MutableStateFlow<List<String>>(CarritoApplication.carrito)
     val carritoItems: StateFlow<List<String>> = _carritoItems.asStateFlow()
 
     fun addToCarrito(itemName: String) {
-        val currentList = _carritoItems.value.toMutableList()
-        currentList.add(itemName)
-        _carritoItems.value = currentList
-        println("Elementos en el carrito: $currentList")
+        CarritoApplication.carrito.add(itemName)
+        _carritoItems.value = CarritoApplication.carrito
+        println("Elementos en el carrito: ${CarritoApplication.carrito}")
     }
 
 /*
