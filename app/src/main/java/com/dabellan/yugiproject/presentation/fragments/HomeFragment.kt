@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -56,27 +56,25 @@ fun HomeFragment(homeViewModel: HomeViewModel) {
             carta.nombre.contains(searchText, ignoreCase = true)
         }
     }
+
     Column {
-
-    }
-
-    Column(Modifier.verticalScroll(rememberScrollState())) {
-        Spacer(modifier = Modifier.size(64.dp))
-
+        Spacer(modifier = Modifier.size(48.dp))
         OutlinedTextField(
             value = searchText,
             onValueChange = { searchText = it },
             label = { Text("Buscar carta") },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 8.dp)
+                .padding(horizontal = 8.dp, vertical = 8.dp)
         )
-
-        filteredCards.forEach { carta ->
-            CardItem(carta) { cartaId ->
-                onCardClick(cartaId, context)
+        LazyColumn {
+            items(filteredCards) { carta ->
+                CardItem(carta) { cartaId ->
+                    onCardClick(cartaId, context)
+                }
             }
         }
+
         Spacer(modifier = Modifier.size(56.dp))
     }
 }

@@ -1,15 +1,15 @@
 package com.dabellan.yugiproject.presentation.fragments
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,10 +24,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dabellan.yugiproject.presentation.composables.CoilImage
+import com.dabellan.yugiproject.presentation.composables.normalizarTexto
 
 @Composable
-fun PerfilFragment(perfilViewModel: PerfilViewModel) {
+fun PerfilFragment(perfilViewModel: PerfilViewModel = viewModel()) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val historialCompras by perfilViewModel.historialCompras.observeAsState()
     val context = LocalContext.current
@@ -36,6 +38,7 @@ fun PerfilFragment(perfilViewModel: PerfilViewModel) {
         val lifecycleObserver = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME) {
                 perfilViewModel.getUserData()
+                perfilViewModel.cargarHistorialCompras()
             }
         }
         lifecycleOwner.lifecycle.addObserver(lifecycleObserver)
@@ -46,51 +49,70 @@ fun PerfilFragment(perfilViewModel: PerfilViewModel) {
 
     val userData by perfilViewModel.userData.observeAsState()
 
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.TopCenter
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
-            modifier = Modifier.verticalScroll(rememberScrollState())
-        ) {
+        item {
             Spacer(modifier = Modifier.size(64.dp))
 
             userData?.let { user ->
-                CoilImage(
-                    url = user.imagen,
-                    modifier = Modifier.size(200.dp)
-                )
-                Text(
-                    text = user.nick,
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
-                Text(
-                    text = user.correo,
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.padding(bottom = 56.dp)
-                )
-            }
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    CoilImage(
+                        url = user.imagen,
+                        modifier = Modifier.size(200.dp)
+                    )
+                    Text(
+                        text = user.nick,
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+                    Text(
+                        text = user.correo,
+                        style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    )
 
+                    Text(
+                        text = "Historial de Compras",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(vertical = 16.dp)
+                    )
+                }
+            }
+        }
+
+        items(historialCompras.orEmpty()) { compra ->
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                elevation = CardDefaults.cardElevation(4.dp)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = normalizarTexto(compra),
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+                }
+            }
+        }
+
+        item {
             Spacer(modifier = Modifier.size(56.dp))
         }
-
-        LazyColumn(
-            modifier = Modifier.padding(horizontal = 16.dp)
-        ) {
-            items(historialCompras.orEmpty()) { compra ->
-                Text(
-                    text = compra,
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
-            }
-        }
-
-        Spacer(modifier = Modifier.size(56.dp))
-
     }
-
-
 }

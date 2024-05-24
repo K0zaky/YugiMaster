@@ -22,10 +22,9 @@ class CarritoViewModel : ViewModel() {
         println("Elemento eliminado del carrito: $itemName")
     }
 
-    /*
     fun clearCarrito() {
         CarritoApplication.carrito.clear()
         _carritoItems.value = CarritoApplication.carrito
+        println("Carrito limpiado")
     }
-    */
 }

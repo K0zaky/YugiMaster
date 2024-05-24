@@ -120,6 +120,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
     implementation("androidx.compose.runtime:runtime-livedata:1.0.5")
     implementation("androidx.compose.foundation:foundation-layout-android:1.6.7")
+    implementation("androidx.compose.foundation:foundation:1.0.5")
+    implementation("androidx.compose.runtime:runtime:1.0.5")
+    implementation("androidx.compose.ui:ui-tooling:1.0.5")
 
 
 
