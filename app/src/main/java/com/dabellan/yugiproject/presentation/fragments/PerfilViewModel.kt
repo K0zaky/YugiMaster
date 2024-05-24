@@ -13,11 +13,18 @@ class PerfilViewModel : ViewModel() {
     private val _userData = MutableLiveData<UsuarioItem>()
     val userData: LiveData<UsuarioItem> = _userData
 
+    private val _historialCompras = MutableLiveData<List<String>>()
+    val historialCompras: LiveData<List<String>> = _historialCompras
+
     fun getUserData() {
         val id = LogedUser.userId.toString()
         viewModelScope.launch {
             val data = apiService.getUsuario(id)
             _userData.value = data
         }
+    }
+
+    fun guardarHistorialCompras(compras: List<String>) {
+        _historialCompras.value = compras
     }
 }

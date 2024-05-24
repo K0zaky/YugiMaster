@@ -16,14 +16,16 @@ class CarritoViewModel : ViewModel() {
         println("Elementos en el carrito: ${CarritoApplication.carrito}")
     }
 
-/*
     fun removeFromCarrito(itemName: String) {
-        val currentList = _carritoItems.value.orEmpty().toMutableList()
-        currentList.remove(itemName)
-        _carritoItems.value = currentList
+        CarritoApplication.carrito.remove(itemName)
+        _carritoItems.value = CarritoApplication.carrito
+        println("Elemento eliminado del carrito: $itemName")
     }
 
+    /*
     fun clearCarrito() {
-        _carritoItems.value = emptyList()
-    }*/
+        CarritoApplication.carrito.clear()
+        _carritoItems.value = CarritoApplication.carrito
+    }
+    */
 }

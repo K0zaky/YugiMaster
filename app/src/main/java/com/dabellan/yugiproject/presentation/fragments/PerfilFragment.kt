@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
@@ -27,6 +29,7 @@ import com.dabellan.yugiproject.presentation.composables.CoilImage
 @Composable
 fun PerfilFragment(perfilViewModel: PerfilViewModel) {
     val lifecycleOwner = LocalLifecycleOwner.current
+    val historialCompras by perfilViewModel.historialCompras.observeAsState()
     val context = LocalContext.current
 
     DisposableEffect(lifecycleOwner) {
@@ -72,5 +75,22 @@ fun PerfilFragment(perfilViewModel: PerfilViewModel) {
 
             Spacer(modifier = Modifier.size(56.dp))
         }
+
+        LazyColumn(
+            modifier = Modifier.padding(horizontal = 16.dp)
+        ) {
+            items(historialCompras.orEmpty()) { compra ->
+                Text(
+                    text = compra,
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.size(56.dp))
+
     }
+
+
 }

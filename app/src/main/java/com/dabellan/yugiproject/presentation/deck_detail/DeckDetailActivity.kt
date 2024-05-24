@@ -96,6 +96,8 @@ class DeckDetailActivity : ComponentActivity() {
                 }
             }
 
+            Spacer(modifier = Modifier.size(16.dp))
+
             Button(
                 onClick = onAddCartaClick,
                 modifier = Modifier
@@ -105,6 +107,9 @@ class DeckDetailActivity : ComponentActivity() {
                 Text(text = "Añadir Carta")
             }
         }
+
+        Spacer(modifier = Modifier.size(56.dp))
+
     }
 
     @Composable
