@@ -8,7 +8,9 @@ import com.dabellan.yugiproject.data.model.MagicaItem
 import com.dabellan.yugiproject.data.model.MonstruoItem
 import com.dabellan.yugiproject.data.model.TrampaItem
 import com.dabellan.yugiproject.data.model.UsuarioItem
+import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -58,4 +60,14 @@ interface RetrofitService {
 
     @POST(Constants.DECKS_PATH)
     suspend fun newDeck(@Body newDeck: DeckItem): DeckItem
+
+    @DELETE(Constants.BORRARCARTASDECK)
+    suspend fun deleteCartaFromDeck(@Path("deck_id") deckId: Int, @Path("carta_id") cartaId: Int): Response<Unit>
+
+    @DELETE(Constants.DECKBYID_PATH)
+    suspend fun deleteDeck(@Path("id") id: Int): Response<Unit>
+
+    @DELETE(Constants.USERID_PATH)
+    suspend fun deleteUsuario(@Path("id") id: Int): Response<Unit>
+
 }

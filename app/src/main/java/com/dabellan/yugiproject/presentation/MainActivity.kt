@@ -28,13 +28,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.dabellan.yugiproject.presentation.fragments.CarritoFragment
-import com.dabellan.yugiproject.presentation.fragments.CarritoViewModel
-import com.dabellan.yugiproject.presentation.fragments.DeckViewModel
-import com.dabellan.yugiproject.presentation.fragments.HomeFragment
-import com.dabellan.yugiproject.presentation.fragments.HomeViewModel
-import com.dabellan.yugiproject.presentation.fragments.PerfilFragment
-import com.dabellan.yugiproject.presentation.fragments.PerfilViewModel
+import com.dabellan.yugiproject.presentation.fragments.carrito.CarritoFragment
+import com.dabellan.yugiproject.presentation.fragments.carrito.CarritoViewModel
+import com.dabellan.yugiproject.presentation.fragments.deck.DeckViewModel
+import com.dabellan.yugiproject.presentation.fragments.home.HomeFragment
+import com.dabellan.yugiproject.presentation.fragments.home.HomeViewModel
+import com.dabellan.yugiproject.presentation.fragments.perfil.PerfilFragment
+import com.dabellan.yugiproject.presentation.fragments.perfil.PerfilViewModel
 
 class MainActivity : ComponentActivity() {
     private val homeViewModel: HomeViewModel by viewModels()

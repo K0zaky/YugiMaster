@@ -31,6 +31,6 @@ object Constants {
 
     const val BORRARCARTASDECK = "/deck/{deck_id}/carta/{carta_id}"
 
-
+    const val DECKBYID_PATH = "/deck/{id}"
 
 }

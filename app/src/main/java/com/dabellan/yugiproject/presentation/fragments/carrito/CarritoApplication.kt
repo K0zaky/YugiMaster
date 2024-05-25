@@ -1,4 +1,4 @@
-package com.dabellan.yugiproject.presentation.fragments
+package com.dabellan.yugiproject.presentation.fragments.carrito
 
 import android.app.Application
 

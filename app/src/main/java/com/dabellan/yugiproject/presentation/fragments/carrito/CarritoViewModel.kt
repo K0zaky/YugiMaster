@@ -1,6 +1,7 @@
-package com.dabellan.yugiproject.presentation.fragments
+package com.dabellan.yugiproject.presentation.fragments.carrito
 
 import androidx.lifecycle.ViewModel
+import com.dabellan.yugiproject.presentation.fragments.carrito.CarritoApplication
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -1,4 +1,4 @@
-package com.dabellan.yugiproject.presentation.fragments
+package com.dabellan.yugiproject.presentation.fragments.perfil
 
 import android.app.Application
 import android.content.Context
@@ -41,8 +41,25 @@ class PerfilViewModel(application: Application) : AndroidViewModel(application) 
         _historialCompras.value = currentHistorial.toList()
     }
 
-     fun cargarHistorialCompras() {
+    fun cargarHistorialCompras() {
         val historial = sharedPreferences.getStringSet(LogedUser.userId.toString(), mutableSetOf())
         _historialCompras.value = historial?.toList()
+    }
+
+    fun eliminarUsuarioActual() {
+        viewModelScope.launch {
+            try {
+                val response = apiService.deleteUsuario(LogedUser.userId)
+                if (response.isSuccessful) {
+                    sharedPreferences.edit().clear().apply()
+                    _userData.value = null
+                    LogedUser.userId = 0
+                } else {
+                    // Manejar error
+                }
+            } catch (e: Exception) {
+                // Manejar excepción
+            }
+        }
     }
 }

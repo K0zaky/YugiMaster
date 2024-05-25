@@ -1,4 +1,4 @@
-package com.dabellan.yugiproject.presentation.fragments
+package com.dabellan.yugiproject.presentation.fragments.deck
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -36,6 +36,19 @@ class DeckViewModel : ViewModel() {
             getAllDecks()
         } catch (e: Exception) {
             println("No se pudo añadir el deck: ${e.message}")
+        }
+    }
+
+    fun deleteDeck(deckId: Int) = viewModelScope.launch {
+        try {
+            val response = apiService.deleteDeck(deckId)
+            if (response.isSuccessful) {
+                getAllDecks()
+            } else {
+                _error.postValue("No se pudo eliminar el deck. Error: ${response.message()}")
+            }
+        } catch (e: Exception) {
+            _error.postValue("No se pudo eliminar el deck. Error: ${e.message}")
         }
     }
 }

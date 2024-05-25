@@ -1,8 +1,9 @@
-package com.dabellan.yugiproject.presentation.fragments
+package com.dabellan.yugiproject.presentation.fragments.home
 
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -65,9 +66,10 @@ fun HomeFragment(homeViewModel: HomeViewModel) {
             label = { Text("Buscar carta") },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 8.dp, vertical = 8.dp)
+                .padding(horizontal = 8.dp, vertical = 14.dp)
         )
-        LazyColumn {
+        LazyColumn(contentPadding = PaddingValues(bottom = 56.dp)){
+
             items(filteredCards) { carta ->
                 CardItem(carta) { cartaId ->
                     onCardClick(cartaId, context)

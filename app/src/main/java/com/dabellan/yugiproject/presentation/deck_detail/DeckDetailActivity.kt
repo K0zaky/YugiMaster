@@ -43,6 +43,8 @@ class DeckDetailActivity : ComponentActivity() {
                 setContent {
                     DeckContent(cartaItems, onAddCartaClick = {
                         navigateToAddCarta()
+                    }, onDeleteCartaClick = { cartaId ->
+                        viewModel.deleteCartaFromDeck(deckId, cartaId)
                     })
                 }
             }
@@ -61,7 +63,7 @@ class DeckDetailActivity : ComponentActivity() {
     }
 
     @Composable
-    fun DeckContent(cartaItems: List<CartaItem>?, onAddCartaClick: () -> Unit) {
+    fun DeckContent(cartaItems: List<CartaItem>?, onAddCartaClick: () -> Unit, onDeleteCartaClick: (Int) -> Unit) {
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
@@ -74,7 +76,7 @@ class DeckDetailActivity : ComponentActivity() {
                             .fillMaxWidth()
                             .padding(vertical = 8.dp, horizontal = 16.dp)
                             .clickable {
-                                //TODO: Implementar el poder borrar la carta
+                                onDeleteCartaClick(cartaItem.id)
                             },
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -109,19 +111,5 @@ class DeckDetailActivity : ComponentActivity() {
         }
 
         Spacer(modifier = Modifier.size(56.dp))
-
-    }
-
-    @Composable
-    fun CartaItemView(cartaItem: CartaItem) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            CoilImage(url = cartaItem.imagen, modifier = Modifier.size(100.dp).padding(end = 16.dp))
-
-            Column {
-                Text(text = normalizarTexto(cartaItem.nombre), modifier = Modifier.padding(bottom = 4.dp))
-                Text(text = normalizarTexto(cartaItem.codigo), modifier = Modifier.padding(bottom = 4.dp))
-                //Text(text = cartaItem.precio.toString())
-            }
-        }
     }
 }

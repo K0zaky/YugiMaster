@@ -1,6 +1,7 @@
 package com.dabellan.yugiproject.presentation.cart_detail
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -13,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -21,7 +23,7 @@ import com.dabellan.yugiproject.data.model.MonstruoItem
 import com.dabellan.yugiproject.data.model.TrampaItem
 import com.dabellan.yugiproject.presentation.composables.CoilImage
 import com.dabellan.yugiproject.presentation.composables.normalizarTexto
-import com.dabellan.yugiproject.presentation.fragments.CarritoViewModel
+import com.dabellan.yugiproject.presentation.fragments.carrito.CarritoViewModel
 
 class CartDetailActivity : ComponentActivity() {
     private val viewModel: CartDetailViewModel by viewModels()
@@ -60,6 +62,7 @@ class CartDetailActivity : ComponentActivity() {
 
     @Composable
     fun MonstruoContent(monstruoItem: MonstruoItem) {
+        val context = LocalContext.current
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -84,6 +87,7 @@ class CartDetailActivity : ComponentActivity() {
             Button(
                 onClick = {
                     carritoViewModel.addToCarrito(monstruoItem.nombre)
+                    Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
                 },
                 modifier = Modifier.padding(bottom = 16.dp)
             ) {
@@ -94,6 +98,7 @@ class CartDetailActivity : ComponentActivity() {
 
     @Composable
     fun MagicaContent(magicaItem: MagicaItem) {
+        val context = LocalContext.current
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -117,6 +122,7 @@ class CartDetailActivity : ComponentActivity() {
             Button(
                 onClick = {
                     carritoViewModel.addToCarrito(magicaItem.nombre)
+                    Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
                 },
                 modifier = Modifier.padding(bottom = 16.dp)
             ) {
@@ -127,6 +133,7 @@ class CartDetailActivity : ComponentActivity() {
 
     @Composable
     fun TrampaContent(trampaItem: TrampaItem) {
+        val context = LocalContext.current
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -150,6 +157,7 @@ class CartDetailActivity : ComponentActivity() {
             Button(
                 onClick = {
                     carritoViewModel.addToCarrito(trampaItem.nombre)
+                    Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
                 },
                 modifier = Modifier.padding(bottom = 16.dp)
             ) {
