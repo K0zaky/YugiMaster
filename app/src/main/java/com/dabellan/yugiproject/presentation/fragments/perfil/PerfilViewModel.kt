@@ -20,6 +20,9 @@ class PerfilViewModel(application: Application) : AndroidViewModel(application) 
     private val _historialCompras = MutableLiveData<List<String>>()
     val historialCompras: LiveData<List<String>> = _historialCompras
 
+    private val _navigateToLogin = MutableLiveData<Boolean>()
+    val navigateToLogin: LiveData<Boolean> = _navigateToLogin
+
     init {
         cargarHistorialCompras()
     }
@@ -54,6 +57,7 @@ class PerfilViewModel(application: Application) : AndroidViewModel(application) 
                     sharedPreferences.edit().clear().apply()
                     _userData.value = null
                     LogedUser.userId = 0
+                    _navigateToLogin.value = true
                 } else {
                     // Manejar error
                 }

@@ -82,6 +82,7 @@ fun DeckFragment(deckViewModel: DeckViewModel = viewModel()) {
                 Text(
                     text = "No hay decks",
                     modifier = Modifier.align(Alignment.CenterHorizontally)
+                        .padding(16.dp)
                 )
             } else {
                 allDecks.forEach { deck ->

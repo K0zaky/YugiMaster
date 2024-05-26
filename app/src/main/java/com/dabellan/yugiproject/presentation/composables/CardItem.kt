@@ -19,37 +19,41 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.dabellan.yugiproject.data.model.CartaItem
+import com.dabellan.yugiproject.ui.theme.YugiprojectTheme
 
 @Composable
 fun CardItem(carta: CartaItem, onClick: (Int) -> Unit) {
     val imageUrl = carta.imagen.replace("\\", "")
-    Card(
-        modifier = Modifier
-            .padding(vertical = 8.dp, horizontal = 4.dp)
-            .clickable {
-                onClick(carta.id)
-            }
-    ) {
-        Row(
+    YugiprojectTheme{
+        Card(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .padding(vertical = 8.dp, horizontal = 4.dp)
+                .clickable {
+                    onClick(carta.id)
+                }
         ) {
-            CoilImage(url = imageUrl, modifier = Modifier.size(80.dp))
-            Spacer(modifier = Modifier.width(16.dp))
-            Column {
-                Text(
-                    text = normalizarTexto(carta.nombre),
-                    style = MaterialTheme.typography.bodyLarge,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(text = "Código: ${carta.codigo}")
-                Text(text = "Precio: ${carta.precio}€")
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp, horizontal = 16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                CoilImage(url = imageUrl, modifier = Modifier.size(80.dp))
+                Spacer(modifier = Modifier.width(16.dp))
+                Column {
+                    Text(
+                        text = normalizarTexto(carta.nombre),
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(text = "Código: ${carta.codigo}")
+                    Text(text = "Precio: ${carta.precio}€")
+                }
             }
         }
     }
-}
+    }
+
 
 @Composable
 fun CoilImage(url: String?, modifier: Modifier = Modifier) {

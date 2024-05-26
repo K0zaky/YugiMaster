@@ -1,5 +1,7 @@
 package com.dabellan.yugiproject.presentation.fragments.perfil
 
+import android.app.Activity
+import android.content.Intent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +18,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -30,12 +33,25 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dabellan.yugiproject.presentation.composables.CoilImage
 import com.dabellan.yugiproject.presentation.composables.normalizarTexto
+import com.dabellan.yugiproject.presentation.login.LoginActivity
 
 @Composable
-fun PerfilFragment(perfilViewModel: PerfilViewModel = viewModel()) {
+fun PerfilFragment(
+    perfilViewModel: PerfilViewModel = viewModel()
+) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val historialCompras by perfilViewModel.historialCompras.observeAsState()
     val context = LocalContext.current
+    val navigateToLogin by perfilViewModel.navigateToLogin.observeAsState()
+
+
+    LaunchedEffect(navigateToLogin) {
+        if (navigateToLogin == true) {
+            val intent = Intent(context, LoginActivity::class.java)
+            context.startActivity(intent)
+            (context as? Activity)?.finish()
+        }
+    }
 
     DisposableEffect(lifecycleOwner) {
         val lifecycleObserver = LifecycleEventObserver { _, event ->
@@ -101,7 +117,6 @@ fun PerfilFragment(perfilViewModel: PerfilViewModel = viewModel()) {
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(vertical = 16.dp)
                     )
-
                 }
             }
         }
