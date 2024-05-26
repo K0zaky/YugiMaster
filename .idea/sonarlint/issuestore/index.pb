@@ -17,10 +17,6 @@ Mapp/src/main/java/com/dabellan/yugiproject/data/instances/RetrofitInstance.kt,
 Kapp/src/main/java/com/dabellan/yugiproject/data/services/RetrofitService.kt,e\d\edfa538538c415c6ea0451633ad3b49b98412135
 
 Oapp/src/main/java/com/dabellan/yugiproject/presentation/composables/CardItem.kt,3\3\3314c10c45547462b350a73e315d8d939edc4ecc
-Å
-Qapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/HomeFragment.kt,5\2\5200855c61444915192f85dd381bd0f68c56c1cd
-Ç
-Rapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/HomeViewModel.kt,a\d\ad12022ab5325ff7f4729268674a99a89dd1b266
 ~
 Napp/src/main/java/com/dabellan/yugiproject/presentation/login/LoginActivity.kt,f\4\f4084269f833a779a4dcb81467935d0993be06e5
 
@@ -33,10 +29,6 @@ D
 app/build.gradle.kts,d\2\d2a4383452aad84a18429a5844d31330a012a9e6
 v
 Fapp/src/main/java/com/dabellan/yugiproject/ViewModels/MainViewModel.kt,d\e\de92b30fb867137ebc90b5ab2b62fd47e58f6447
-Å
-Qapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/DeckFragment.kt,5\6\563b47bf72bce8d9ee8bc8d1147b88b77681400f
-Ç
-Rapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/DeckViewModel.kt,2\3\236c3e0183ec8db73123c4005bb26f9a8f846b41
 â
 Yapp/src/main/java/com/dabellan/yugiproject/presentation/cart_detail/CartDetailActivity.kt,5\2\52416bc6c0fe1e74d2c09eaad986ecbda91febe0
 ä
@@ -67,16 +59,8 @@ Yapp/src/main/java/com/dabellan/yugiproject/presentation/deck_detail/DeckDetailA
 Zapp/src/main/java/com/dabellan/yugiproject/presentation/deck_detail/DeckDetailViewModel.kt,8\8\888800965c3d4613673b2d91a49fe43d9cf67cc6
 
 Oapp/src/main/java/com/dabellan/yugiproject/presentation/composables/DeckItem.kt,a\2\a239ae8dd0720cafb610c58ceabb9131d165fa63
-Ñ
-Tapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/CarritoFragment.kt,d\6\d6cea2186124d49c0b3c9573eb30ca1de26dd539
-Ö
-Uapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/CarritoViewModel.kt,5\4\544a29178494f40f7f5a74ca78ec041f49467475
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-É
-Sapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/PerfilFragment.kt,3\a\3a3303b7f28ba5422bbe3a631db44eacaea29ea6
-Ñ
-Tapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/PerfilViewModel.kt,b\4\b487ef18df0b31f74c35c9203fabbede2e438c9e
 k
 ;app/src/main/java/com/dabellan/yugiproject/ui/theme/Type.kt,d\c\dc7f59f3acf946be377acfe06fa0459a9940818e
 l
@@ -89,8 +73,6 @@ y
 Iapp/src/main/java/com/dabellan/yugiproject/data/services/CartaDeckBody.kt,d\f\dfa6d2eb9db22ab48463a4c440d506d94d68879f
 l
 <app/src/main/java/com/dabellan/yugiproject/ui/theme/Theme.kt,5\b\5bc7cdd2b25e99a0f166c5dd0db7db5e1e54f0ef
-á
-Wapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/CarritoApplication.kt,f\d\fddc8d120c481f8cc55310fe84fa5ddca7832d71
 è
 _app/src/main/java/com/dabellan/yugiproject/presentation/fragments/carrito/CarritoApplication.kt,9\8\980d37c43999922c28929bfc93619d15c7739c75
 å

@@ -12,6 +12,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
+import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
@@ -64,19 +66,21 @@ fun HomeFragment(homeViewModel: HomeViewModel) {
             value = searchText,
             onValueChange = { searchText = it },
             label = { Text("Buscar carta") },
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = MaterialTheme.colorScheme.onSurface,
+                unfocusedBorderColor = MaterialTheme.colorScheme.onSurface
+            ),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 8.dp, vertical = 14.dp)
         )
-        LazyColumn(contentPadding = PaddingValues(bottom = 56.dp)){
-
+        LazyColumn(contentPadding = PaddingValues(bottom = 56.dp)) {
             items(filteredCards) { carta ->
                 CardItem(carta) { cartaId ->
                     onCardClick(cartaId, context)
                 }
             }
         }
-
         Spacer(modifier = Modifier.size(56.dp))
     }
 }

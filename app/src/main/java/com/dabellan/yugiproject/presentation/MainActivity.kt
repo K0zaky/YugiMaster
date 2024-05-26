@@ -35,6 +35,7 @@ import com.dabellan.yugiproject.presentation.fragments.home.HomeFragment
 import com.dabellan.yugiproject.presentation.fragments.home.HomeViewModel
 import com.dabellan.yugiproject.presentation.fragments.perfil.PerfilFragment
 import com.dabellan.yugiproject.presentation.fragments.perfil.PerfilViewModel
+import com.dabellan.yugiproject.ui.theme.YugiprojectTheme
 
 class MainActivity : ComponentActivity() {
     private val homeViewModel: HomeViewModel by viewModels()
@@ -45,7 +46,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Content()
+            YugiprojectTheme{
+                Content()
+            }
         }
     }
 

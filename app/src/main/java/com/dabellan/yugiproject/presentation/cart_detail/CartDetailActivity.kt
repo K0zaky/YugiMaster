@@ -6,9 +6,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -65,31 +71,42 @@ class CartDetailActivity : ComponentActivity() {
         val context = LocalContext.current
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxSize().padding(16.dp)
         ) {
-            CoilImage(
-                url = monstruoItem.imagen,
-                modifier = Modifier
-                    .size(450.dp)
-                    .padding(bottom = 16.dp)
-            )
-            Text(
-                text = normalizarTexto(monstruoItem.nombre),
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-            Column(modifier = Modifier.padding(bottom = 8.dp)) {
-                Text(text = normalizarTexto(monstruoItem.tipoMonstruo), fontSize = 16.sp)
-                Text(text = normalizarTexto(monstruoItem.atributo), fontSize = 16.sp)
-                Text(text = normalizarTexto(monstruoItem.efecto), fontSize = 16.sp)
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                CoilImage(
+                    url = monstruoItem.imagen,
+                    modifier = Modifier
+                        .size(450.dp)
+                        .padding(bottom = 16.dp)
+                )
+                Text(
+                    text = normalizarTexto(monstruoItem.nombre),
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+                Column(modifier = Modifier.padding(bottom = 8.dp)) {
+                    Text(text = normalizarTexto(monstruoItem.tipoMonstruo), fontSize = 16.sp, modifier = Modifier.padding(bottom = 4.dp))
+                    Text(text = normalizarTexto(monstruoItem.atributo), fontSize = 16.sp, modifier = Modifier.padding(bottom = 4.dp))
+                    Box(
+                        modifier = Modifier
+                            .height(150.dp)
+                            .verticalScroll(rememberScrollState())
+                    ) {
+                        Text(text = normalizarTexto(monstruoItem.efecto), fontSize = 16.sp)
+                    }
+                }
             }
             Button(
                 onClick = {
                     carritoViewModel.addToCarrito(monstruoItem.nombre)
                     Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
                 },
-                modifier = Modifier.padding(bottom = 16.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp)
             ) {
                 Text(text = "Añadir al carrito")
             }
@@ -101,30 +118,41 @@ class CartDetailActivity : ComponentActivity() {
         val context = LocalContext.current
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxSize().padding(16.dp)
         ) {
-            CoilImage(
-                url = magicaItem.imagen,
-                modifier = Modifier
-                    .size(450.dp)
-                    .padding(bottom = 16.dp)
-            )
-            Text(
-                text = normalizarTexto(magicaItem.nombre),
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-            Column(modifier = Modifier.padding(bottom = 8.dp)) {
-                Text(text = normalizarTexto(magicaItem.tipoMagia), fontSize = 16.sp)
-                Text(text = normalizarTexto(magicaItem.efecto), fontSize = 16.sp)
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                CoilImage(
+                    url = magicaItem.imagen,
+                    modifier = Modifier
+                        .size(450.dp)
+                        .padding(bottom = 16.dp)
+                )
+                Text(
+                    text = normalizarTexto(magicaItem.nombre),
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+                Column(modifier = Modifier.padding(bottom = 8.dp)) {
+                    Text(text = normalizarTexto(magicaItem.tipoMagia), fontSize = 16.sp, modifier = Modifier.padding(bottom = 4.dp))
+                    Box(
+                        modifier = Modifier
+                            .height(150.dp)
+                            .verticalScroll(rememberScrollState())
+                    ) {
+                        Text(text = normalizarTexto(magicaItem.efecto), fontSize = 16.sp)
+                    }
+                }
             }
             Button(
                 onClick = {
                     carritoViewModel.addToCarrito(magicaItem.nombre)
                     Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
                 },
-                modifier = Modifier.padding(bottom = 16.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp)
             ) {
                 Text(text = "Añadir al carrito")
             }
@@ -136,30 +164,41 @@ class CartDetailActivity : ComponentActivity() {
         val context = LocalContext.current
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxSize().padding(16.dp)
         ) {
-            CoilImage(
-                url = trampaItem.imagen,
-                modifier = Modifier
-                    .size(450.dp)
-                    .padding(bottom = 16.dp)
-            )
-            Text(
-                text = normalizarTexto(trampaItem.nombre),
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-            Column(modifier = Modifier.padding(bottom = 8.dp)) {
-                Text(text = normalizarTexto(trampaItem.tipoTrampa), fontSize = 16.sp)
-                Text(text = normalizarTexto(trampaItem.efecto), fontSize = 16.sp)
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                CoilImage(
+                    url = trampaItem.imagen,
+                    modifier = Modifier
+                        .size(450.dp)
+                        .padding(bottom = 16.dp)
+                )
+                Text(
+                    text = normalizarTexto(trampaItem.nombre),
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+                Column(modifier = Modifier.padding(bottom = 8.dp)) {
+                    Text(text = normalizarTexto(trampaItem.tipoTrampa), fontSize = 16.sp, modifier = Modifier.padding(bottom = 4.dp))
+                    Box(
+                        modifier = Modifier
+                            .height(150.dp)
+                            .verticalScroll(rememberScrollState())
+                    ) {
+                        Text(text = normalizarTexto(trampaItem.efecto), fontSize = 16.sp)
+                    }
+                }
             }
             Button(
                 onClick = {
                     carritoViewModel.addToCarrito(trampaItem.nombre)
                     Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
                 },
-                modifier = Modifier.padding(bottom = 16.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp)
             ) {
                 Text(text = "Añadir al carrito")
             }
