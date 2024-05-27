@@ -144,7 +144,6 @@ fun DeckFragment(deckViewModel: DeckViewModel = viewModel()) {
                     }
                 )
             } else {
-                // Dialog for adding a new deck
                 AlertDialog(
                     onDismissRequest = { showDialog = false },
                     title = { Text("Añadir Deck") },

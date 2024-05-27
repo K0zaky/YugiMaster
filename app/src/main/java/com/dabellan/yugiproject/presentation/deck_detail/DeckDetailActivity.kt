@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import com.dabellan.yugiproject.data.model.CartaItem
 import com.dabellan.yugiproject.presentation.composables.CoilImage
 import com.dabellan.yugiproject.presentation.composables.normalizarTexto
+import com.dabellan.yugiproject.ui.theme.YugiprojectTheme
 
 class DeckDetailActivity : ComponentActivity() {
     private val viewModel: DeckDetailViewModel by viewModels()
@@ -41,11 +42,13 @@ class DeckDetailActivity : ComponentActivity() {
         viewModel.cartaItems.observe(this) { cartaItems ->
             if (cartaItems != null) {
                 setContent {
-                    DeckContent(cartaItems, onAddCartaClick = {
-                        navigateToAddCarta()
-                    }, onDeleteCartaClick = { cartaId ->
-                        viewModel.deleteCartaFromDeck(deckId, cartaId)
-                    })
+                    YugiprojectTheme {
+                        DeckContent(cartaItems, onAddCartaClick = {
+                            navigateToAddCarta()
+                        }, onDeleteCartaClick = { cartaId ->
+                            viewModel.deleteCartaFromDeck(deckId, cartaId)
+                        })
+                    }
                 }
             }
         }

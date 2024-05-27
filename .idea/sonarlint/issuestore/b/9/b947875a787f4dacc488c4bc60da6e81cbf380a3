@@ -1,3 +1,4 @@
 
-Bkotlin:S1258"Remove this commented out code.(Éªœæÿÿÿÿÿ8¢ïâ²û1
-¥kotlin:S3923Z"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¶Ú–êýÿÿÿÿ8­¿Ì²û1J$1b467804-0974-4303-b3fd-3438d1353690
+Bkotlin:S125:"Remove this commented out code.(Éªœæÿÿÿÿÿ8Æ­ÊÖû1
+vkotlin:S3776&"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(Ý©ÚÓøÿÿÿÿ8Î­ÊÖû1
+kotlin:S3923\"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¶Ú–êýÿÿÿÿ8Ñ­ÊÖû1

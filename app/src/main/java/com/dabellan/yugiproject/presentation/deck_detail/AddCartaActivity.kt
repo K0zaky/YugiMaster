@@ -29,6 +29,7 @@ import com.dabellan.yugiproject.data.model.CartaItem
 import com.dabellan.yugiproject.data.services.CartaDeckBody
 import com.dabellan.yugiproject.presentation.composables.CoilImage
 import com.dabellan.yugiproject.presentation.composables.normalizarTexto
+import com.dabellan.yugiproject.ui.theme.YugiprojectTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -48,8 +49,10 @@ class AddCartaActivity : ComponentActivity() {
         viewModel.cartaItems.observe(this) { cartaItems ->
             if (cartaItems != null) {
                 setContent {
-                    CartaListContent(cartaItems) { selectedCarta ->
-                        addCartaToDeck(deck_id, selectedCarta.id)
+                    YugiprojectTheme {
+                        CartaListContent(cartaItems) { selectedCarta ->
+                            addCartaToDeck(deck_id, selectedCarta.id)
+                        }
                     }
                 }
             }

@@ -30,6 +30,7 @@ import com.dabellan.yugiproject.data.model.TrampaItem
 import com.dabellan.yugiproject.presentation.composables.CoilImage
 import com.dabellan.yugiproject.presentation.composables.normalizarTexto
 import com.dabellan.yugiproject.presentation.fragments.carrito.CarritoViewModel
+import com.dabellan.yugiproject.ui.theme.YugiprojectTheme
 
 class CartDetailActivity : ComponentActivity() {
     private val viewModel: CartDetailViewModel by viewModels()
@@ -44,7 +45,9 @@ class CartDetailActivity : ComponentActivity() {
         viewModel.monstruoItem.observe(this) { monstruoItem ->
             if (monstruoItem != null) {
                 setContent {
-                    MonstruoContent(monstruoItem)
+                    YugiprojectTheme {
+                        MonstruoContent(monstruoItem)
+                    }
                 }
             }
         }
@@ -72,7 +75,9 @@ class CartDetailActivity : ComponentActivity() {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxSize().padding(16.dp)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 CoilImage(
@@ -119,7 +124,9 @@ class CartDetailActivity : ComponentActivity() {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxSize().padding(16.dp)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 CoilImage(
@@ -165,7 +172,9 @@ class CartDetailActivity : ComponentActivity() {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxSize().padding(16.dp)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 CoilImage(

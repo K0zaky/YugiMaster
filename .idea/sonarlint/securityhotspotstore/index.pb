@@ -89,3 +89,5 @@ Zapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/perfil/Perfil
 [app/src/main/java/com/dabellan/yugiproject/presentation/fragments/perfil/PerfilViewModel.kt,b\f\bffd567b2c62c4b9f581270a0dc2a95df55f1c36
 á
 Wapp/src/main/java/com/dabellan/yugiproject/presentation/fragments/home/HomeViewModel.kt,d\7\d78172332d6586837790471800b638f4b52a718d
+ç
+]app/src/main/java/com/dabellan/yugiproject/presentation/fragments/carrito/CarritoViewModel.kt,8\9\89c5c406c176e60bd2c9a18484032573573b844e
