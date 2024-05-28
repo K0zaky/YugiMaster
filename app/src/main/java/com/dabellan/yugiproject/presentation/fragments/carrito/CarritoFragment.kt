@@ -18,7 +18,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,8 +32,6 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dabellan.yugiproject.presentation.composables.normalizarTexto
 import com.dabellan.yugiproject.presentation.fragments.perfil.PerfilViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -41,23 +39,33 @@ fun CarritoFragment(
     carritoViewModel: CarritoViewModel = viewModel(),
     perfilViewModel: PerfilViewModel = viewModel()
 ) {
+    var showCarrito by remember { mutableStateOf(true) }
+
+    if (showCarrito) {
+        CarritoScreen(
+            carritoViewModel = carritoViewModel,
+            perfilViewModel = perfilViewModel,
+            onRefreshRequested = { showCarrito = false }
+        )
+    } else {
+        LaunchedEffect(Unit) {
+            showCarrito = true
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun CarritoScreen(
+    carritoViewModel: CarritoViewModel,
+    perfilViewModel: PerfilViewModel,
+    onRefreshRequested: () -> Unit
+) {
     val carritoItems by carritoViewModel.carritoItems.collectAsState()
     val context = LocalContext.current
 
     var showDialog by remember { mutableStateOf(false) }
     var itemToDelete by remember { mutableStateOf<String?>(null) }
-
-    DisposableEffect(key1 = carritoViewModel) {
-        val carritoItemsFlow = carritoViewModel.carritoItems
-        val carritoItemsJob = GlobalScope.launch {
-            carritoItemsFlow.collect {
-            }
-        }
-
-        onDispose {
-            carritoItemsJob.cancel()
-        }
-    }
 
     Column(
         modifier = Modifier
@@ -108,6 +116,7 @@ fun CarritoFragment(
             Button(
                 onClick = {
                     comprar(context, carritoItems, perfilViewModel, carritoViewModel)
+                    onRefreshRequested()
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -134,6 +143,7 @@ fun CarritoFragment(
                         carritoViewModel.removeFromCarrito(itemToDelete!!)
                         showDialog = false
                         itemToDelete = null
+                        onRefreshRequested()
                     }
                 ) {
                     Text("Eliminar")

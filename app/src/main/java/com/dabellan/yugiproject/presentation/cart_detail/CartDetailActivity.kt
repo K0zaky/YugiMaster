@@ -106,8 +106,12 @@ class CartDetailActivity : ComponentActivity() {
             }
             Button(
                 onClick = {
-                    carritoViewModel.addToCarrito(monstruoItem.nombre)
-                    Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
+                    if (!carritoViewModel.carritoItems.value.contains(monstruoItem.nombre)) {
+                        carritoViewModel.addToCarrito(monstruoItem.nombre)
+                        Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "La carta ya está en el carrito", Toast.LENGTH_SHORT).show()
+                    }
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -154,8 +158,12 @@ class CartDetailActivity : ComponentActivity() {
             }
             Button(
                 onClick = {
-                    carritoViewModel.addToCarrito(magicaItem.nombre)
-                    Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
+                    if (!carritoViewModel.carritoItems.value.contains(magicaItem.nombre)) {
+                        carritoViewModel.addToCarrito(magicaItem.nombre)
+                        Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "La carta ya está en el carrito", Toast.LENGTH_SHORT).show()
+                    }
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -202,8 +210,12 @@ class CartDetailActivity : ComponentActivity() {
             }
             Button(
                 onClick = {
-                    carritoViewModel.addToCarrito(trampaItem.nombre)
-                    Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
+                    if (!carritoViewModel.carritoItems.value.contains(trampaItem.nombre)) {
+                        carritoViewModel.addToCarrito(trampaItem.nombre)
+                        Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "La carta ya está en el carrito", Toast.LENGTH_SHORT).show()
+                    }
                 },
                 modifier = Modifier
                     .fillMaxWidth()

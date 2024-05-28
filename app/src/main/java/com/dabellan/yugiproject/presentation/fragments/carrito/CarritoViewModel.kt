@@ -1,7 +1,6 @@
 package com.dabellan.yugiproject.presentation.fragments.carrito
 
 import androidx.lifecycle.ViewModel
-import com.dabellan.yugiproject.presentation.fragments.carrito.CarritoApplication
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,9 +11,13 @@ class CarritoViewModel : ViewModel() {
     val carritoItems: StateFlow<List<String>> = _carritoItems.asStateFlow()
 
     fun addToCarrito(itemName: String) {
-        CarritoApplication.carrito.add(itemName)
-        _carritoItems.value = CarritoApplication.carrito
-        println("Elementos en el carrito: ${CarritoApplication.carrito}")
+        if (!CarritoApplication.carrito.contains(itemName)) {
+            CarritoApplication.carrito.add(itemName)
+            _carritoItems.value = CarritoApplication.carrito
+            println("Elementos en el carrito: ${CarritoApplication.carrito}")
+        } else {
+            println("El elemento ya está en el carrito: $itemName")
+        }
     }
 
     fun removeFromCarrito(itemName: String) {

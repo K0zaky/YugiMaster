@@ -52,7 +52,7 @@ fun CardItem(carta: CartaItem, onClick: (Int) -> Unit) {
             }
         }
     }
-    }
+}
 
 
 @Composable

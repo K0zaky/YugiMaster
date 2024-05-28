@@ -58,4 +58,8 @@ class DeckDetailViewModel : ViewModel() {
             }
         }
     }
+
+    fun calcularPrecioTotal(cartas: List<CartaItem>?): Double {
+        return cartas?.sumByDouble { it.precio.toDouble() } ?: 0.0
+    }
 }
