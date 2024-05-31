@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,16 +19,21 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberImagePainter
 import com.dabellan.yugiproject.data.instances.RetrofitInstance
 import com.dabellan.yugiproject.data.model.CartaItem
 import com.dabellan.yugiproject.data.services.CartaDeckBody
-import com.dabellan.yugiproject.presentation.composables.CoilImage
 import com.dabellan.yugiproject.presentation.composables.normalizarTexto
 import com.dabellan.yugiproject.ui.theme.YugiprojectTheme
 import kotlinx.coroutines.CoroutineScope
@@ -63,7 +69,6 @@ class AddCartaActivity : ComponentActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = RetrofitInstance.api.anyadirCartaDeck(deck_id, CartaDeckBody(id_carta))
-                Toast.makeText(this@AddCartaActivity, "Carta añadida con éxito", Toast.LENGTH_SHORT).show()
                 withContext(Dispatchers.Main) {
                     if (response != null) {
                         Toast.makeText(this@AddCartaActivity, "Carta añadida con éxito", Toast.LENGTH_SHORT).show()
@@ -82,9 +87,25 @@ class AddCartaActivity : ComponentActivity() {
 
     @Composable
     fun CartaListContent(cartaItems: List<CartaItem>, onCartaClick: (CartaItem) -> Unit) {
-        LazyColumn {
-            items(cartaItems) { cartaItem ->
-                CartaItemView(cartaItem, onCartaClick)
+        var searchQuery by remember { mutableStateOf("") }
+
+        val filteredCartaItems = cartaItems.filter {
+            it.nombre.contains(searchQuery, ignoreCase = true)
+        }
+
+        Column {
+            TextField(
+                value = searchQuery,
+                onValueChange = { searchQuery = it },
+                label = { Text("Buscar carta") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
+            LazyColumn {
+                items(filteredCartaItems) { cartaItem ->
+                    CartaItemView(cartaItem, onCartaClick)
+                }
             }
         }
     }
@@ -98,8 +119,9 @@ class AddCartaActivity : ComponentActivity() {
                 .padding(vertical = 8.dp, horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CoilImage(
-                url = cartaItem.imagen,
+            Image(
+                painter = rememberImagePainter(cartaItem.imagen),
+                contentDescription = null,
                 modifier = Modifier.size(80.dp)
             )
             Spacer(modifier = Modifier.width(16.dp))
