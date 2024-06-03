@@ -44,7 +44,6 @@ fun PerfilFragment(
     val context = LocalContext.current
     val navigateToLogin by perfilViewModel.navigateToLogin.observeAsState()
 
-
     LaunchedEffect(navigateToLogin) {
         if (navigateToLogin == true) {
             val intent = Intent(context, LoginActivity::class.java)
@@ -99,10 +98,23 @@ fun PerfilFragment(
                     )
 
                     Button(
+                        onClick = { perfilViewModel.logout() },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary)
+                    ) {
+                        Text(
+                            text = "Log Out",
+                            color = Color.White
+                        )
+                    }
+
+                    Button(
                         onClick = { perfilViewModel.eliminarUsuarioActual() },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 16.dp),
+                            .padding(vertical = 8.dp),
                         colors = ButtonDefaults.buttonColors(Color.Red)
                     ) {
                         Text(

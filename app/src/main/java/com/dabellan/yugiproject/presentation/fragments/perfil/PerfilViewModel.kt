@@ -66,4 +66,10 @@ class PerfilViewModel(application: Application) : AndroidViewModel(application) 
             }
         }
     }
+
+    fun logout() {
+        sharedPreferences.edit().clear().apply()
+        LogedUser.userId = 0
+        _navigateToLogin.value = true
+    }
 }
