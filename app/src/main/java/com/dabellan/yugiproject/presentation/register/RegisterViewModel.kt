@@ -18,7 +18,7 @@ class RegisterViewModel : ViewModel() {
         _registerState.value = RegisterState.Loading
         viewModelScope.launch {
             try {
-                val usuario = UsuarioItem(nick = nick, correo = correo, contrasenya = contrasenya, imagen = imagen)
+                val usuario = UsuarioItem(nick = nick, correo = correo.trim(), contrasenya = contrasenya, imagen = imagen)
                 val result = RetrofitInstance.api.crearUsuario(usuario)
                 _registerState.value = RegisterState.Success(result)
             } catch (e: HttpException) {

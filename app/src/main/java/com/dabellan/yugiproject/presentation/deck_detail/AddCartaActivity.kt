@@ -79,7 +79,7 @@ class AddCartaActivity : ComponentActivity() {
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    //Toast.makeText(this@AddCartaActivity, "Error de red: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AddCartaActivity, "Error de red: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }

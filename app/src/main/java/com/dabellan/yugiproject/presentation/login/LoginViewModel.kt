@@ -19,7 +19,7 @@ class LoginViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val usuarios = RetrofitInstance.api.getUsers()
-                val datos = usuarios.find { it.correo == correo && it.contrasenya == contrasenya }
+                val datos = usuarios.find { it.correo == correo.trim() && it.contrasenya == contrasenya }
                 if (datos != null) {
                     LogedUser.userId = datos.id
                     _loginState.value = LoginState.Success(datos)

@@ -1,5 +1,6 @@
 package com.dabellan.yugiproject.presentation.register
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -28,6 +30,7 @@ fun RegisterActivity(
     onRegister: (String, String, String, String) -> Unit,
     onDismiss: () -> Unit
 ) {
+    val context = LocalContext.current
     var nick by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -82,7 +85,7 @@ fun RegisterActivity(
                             image
                         }
                         if (nick==""||email==""||password==""){
-                            println("Registro incorrecto") //TODO: Hacer que notifique al usuario
+                            Toast.makeText(context, "Error al registrar usuario", Toast.LENGTH_SHORT).show()
                         }else{
                             onRegister(nick, email, password, imageUrl)
                         }
