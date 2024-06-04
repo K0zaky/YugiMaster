@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.IconButton
@@ -31,6 +32,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.dabellan.yugiproject.presentation.composables.CoilImage
 import com.dabellan.yugiproject.presentation.login.LoginState
 import com.dabellan.yugiproject.ui.theme.YugiprojectTheme
 
@@ -55,10 +57,10 @@ fun LoginScreen(
                 verticalArrangement = Arrangement.Center,
                 modifier = Modifier.padding(16.dp)
             ) {
-                /*CoilImage(
-                    url = R.mipmap.logo_provisional.toString(),
-                    modifier = Modifier.size(200.dp)
-                )*/
+                CoilImage(
+                    url = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/627fe721-846f-4f75-ac61-111ca00b27dd/daqj0nl-c26a7f4f-d9fd-4e51-bca4-c1d80cfca8ef.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzYyN2ZlNzIxLTg0NmYtNGY3NS1hYzYxLTExMWNhMDBiMjdkZFwvZGFxajBubC1jMjZhN2Y0Zi1kOWZkLTRlNTEtYmNhNC1jMWQ4MGNmY2E4ZWYucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.lCdGVlq7flrU5TKVn4LuwoUt5qzag1YiqbjoBv5kid8",
+                    modifier = Modifier.size(180.dp)
+                )
                 Text(
                     text = "Bienvenido",
                     fontSize = 32.sp,

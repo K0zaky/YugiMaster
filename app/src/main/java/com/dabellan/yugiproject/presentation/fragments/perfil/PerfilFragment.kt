@@ -105,7 +105,7 @@ fun PerfilFragment(
                         colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary)
                     ) {
                         Text(
-                            text = "Log Out",
+                            text = "Cerrar sesión",
                             color = Color.White
                         )
                     }
