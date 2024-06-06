@@ -1,5 +1,6 @@
 package com.dabellan.yugiproject.presentation.deck_detail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -17,6 +18,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.AppBarDefaults
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Scaffold
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -27,6 +35,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -85,6 +94,7 @@ class AddCartaActivity : ComponentActivity() {
         }
     }
 
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     @Composable
     fun CartaListContent(cartaItems: List<CartaItem>, onCartaClick: (CartaItem) -> Unit) {
         var searchQuery by remember { mutableStateOf("") }
@@ -93,18 +103,33 @@ class AddCartaActivity : ComponentActivity() {
             it.nombre.contains(searchQuery, ignoreCase = true)
         }
 
-        Column {
-            TextField(
-                value = searchQuery,
-                onValueChange = { searchQuery = it },
-                label = { Text("Buscar carta") },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            )
-            LazyColumn {
-                items(filteredCartaItems) { cartaItem ->
-                    CartaItemView(cartaItem, onCartaClick)
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = { },
+                    backgroundColor = Color.White,
+                    elevation = AppBarDefaults.TopAppBarElevation,
+                    navigationIcon = {
+                        IconButton(onClick = { onBackPressed() }) {
+                            Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        }
+                    }
+                )
+            }
+        ) {
+            Column {
+                TextField(
+                    value = searchQuery,
+                    onValueChange = { searchQuery = it },
+                    label = { Text("Buscar carta") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                )
+                LazyColumn {
+                    items(filteredCartaItems) { cartaItem ->
+                        CartaItemView(cartaItem, onCartaClick)
+                    }
                 }
             }
         }

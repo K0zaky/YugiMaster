@@ -1,5 +1,6 @@
 package com.dabellan.yugiproject.presentation.deck_detail
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -13,7 +14,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Scaffold
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -23,6 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.dabellan.yugiproject.data.model.CartaItem
 import com.dabellan.yugiproject.presentation.composables.CardItem
@@ -63,6 +71,7 @@ class DeckDetailActivity : ComponentActivity() {
         startActivity(intent)
     }
 
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     @Composable
     fun DeckContent(
         cartaItems: List<CartaItem>?,
@@ -71,40 +80,60 @@ class DeckDetailActivity : ComponentActivity() {
     ) {
         var precioTotal by remember { mutableStateOf(0.0) }
 
-        Box(modifier = Modifier.fillMaxSize()) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.Center)
-            ) {
-                items(cartaItems.orEmpty()) { cartaItem ->
-                    CardItem(carta = cartaItem, onClick = {
-                        onDeleteCartaClick(cartaItem.id)
-                    })
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                            Text(text = "")
+                        }
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = { finish() }) {
+                            Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        }
+                    },
+                    backgroundColor = Color.White,
+                    contentColor = Color.Black
+                )
+            },
+            content = {
+                Box(modifier = Modifier.fillMaxSize()) {
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.Center)
+                    ) {
+                        items(cartaItems.orEmpty()) { cartaItem ->
+                            CardItem(carta = cartaItem, onClick = {
+                                onDeleteCartaClick(cartaItem.id)
+                            })
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.size(16.dp))
+
+                    /*Text(
+                        text = "Precio total: ${precioTotal}€",
+                        modifier = Modifier
+                            .align(Alignment.BottomCenter)
+                            .padding(bottom = 16.dp),
+                        style = MaterialTheme.typography.bodyMedium
+                    )*/
+
+                    Spacer(modifier = Modifier.size(16.dp))
+
+                    Button(
+                        onClick = onAddCartaClick,
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .align(Alignment.BottomCenter)
+                    ) {
+                        Text(text = "Añadir Carta")
+                    }
                 }
             }
-
-            Spacer(modifier = Modifier.size(16.dp))
-
-            /*Text(
-                text = "Precio total: ${precioTotal}€",
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .padding(bottom = 16.dp),
-                style = MaterialTheme.typography.bodyMedium
-            )*/
-
-            Spacer(modifier = Modifier.size(16.dp))
-
-            Button(
-                onClick = onAddCartaClick,
-                modifier = Modifier
-                    .padding(16.dp)
-                    .align(Alignment.BottomCenter)
-            ) {
-                Text(text = "Añadir Carta")
-            }
-        }
+        )
 
         LaunchedEffect(cartaItems) {
             precioTotal = viewModel.calcularPrecioTotal(cartaItems)

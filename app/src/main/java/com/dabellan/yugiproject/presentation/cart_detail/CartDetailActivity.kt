@@ -15,11 +15,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -55,7 +62,9 @@ class CartDetailActivity : ComponentActivity() {
         viewModel.magicaItem.observe(this) { magicaItem ->
             if (magicaItem != null) {
                 setContent {
-                    MagicaContent(magicaItem)
+                    YugiprojectTheme {
+                        MagicaContent(magicaItem)
+                    }
                 }
             }
         }
@@ -63,7 +72,9 @@ class CartDetailActivity : ComponentActivity() {
         viewModel.trampaItem.observe(this) { trampaItem ->
             if (trampaItem != null) {
                 setContent {
-                    TrampaContent(trampaItem)
+                    YugiprojectTheme {
+                        TrampaContent(trampaItem)
+                    }
                 }
             }
         }
@@ -72,157 +83,220 @@ class CartDetailActivity : ComponentActivity() {
     @Composable
     fun MonstruoContent(monstruoItem: MonstruoItem) {
         val context = LocalContext.current
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                CoilImage(
-                    url = monstruoItem.imagen,
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                            Text(text = "")
+                        }
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = { finish() }) {
+                            Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        }
+                    },
+                    backgroundColor = Color.White,
+                    contentColor = Color.Black
+                )
+            },
+            content = { paddingValues ->
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier
-                        .size(450.dp)
-                        .padding(bottom = 16.dp)
-                )
-                Text(
-                    text = normalizarTexto(monstruoItem.nombre),
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
-                Column(modifier = Modifier.padding(bottom = 8.dp)) {
-                    Text(text = normalizarTexto(monstruoItem.tipoMonstruo), fontSize = 16.sp, modifier = Modifier.padding(bottom = 4.dp))
-                    Text(text = normalizarTexto(monstruoItem.atributo), fontSize = 16.sp, modifier = Modifier.padding(bottom = 4.dp))
-                    Box(
+                        .fillMaxSize()
+                        .padding(paddingValues)
+                        .padding(16.dp)
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        CoilImage(
+                            url = monstruoItem.imagen,
+                            modifier = Modifier
+                                .size(400.dp)
+                                .padding(bottom = 16.dp)
+                        )
+                        Text(
+                            text = normalizarTexto(monstruoItem.nombre),
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(bottom = 8.dp)
+                        )
+                        Column(modifier = Modifier.padding(bottom = 8.dp)) {
+                            Text(text = normalizarTexto(monstruoItem.tipoMonstruo), fontSize = 16.sp, modifier = Modifier.padding(bottom = 4.dp))
+                            Text(text = normalizarTexto(monstruoItem.atributo), fontSize = 16.sp, modifier = Modifier.padding(bottom = 4.dp))
+                            Box(
+                                modifier = Modifier
+                                    .height(150.dp)
+                                    .verticalScroll(rememberScrollState())
+                            ) {
+                                Text(text = normalizarTexto(monstruoItem.efecto), fontSize = 16.sp)
+                            }
+                        }
+                    }
+                    Button(
+                        onClick = {
+                            if (!carritoViewModel.carritoItems.value.contains(monstruoItem.nombre)) {
+                                carritoViewModel.addToCarrito(monstruoItem.nombre)
+                                Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(context, "La carta ya está en el carrito", Toast.LENGTH_SHORT).show()
+                            }
+                        },
                         modifier = Modifier
-                            .height(150.dp)
-                            .verticalScroll(rememberScrollState())
+                            .fillMaxWidth()
+                            .padding(bottom = 16.dp)
                     ) {
-                        Text(text = normalizarTexto(monstruoItem.efecto), fontSize = 16.sp)
+                        Text(text = "Añadir al carrito")
                     }
                 }
             }
-            Button(
-                onClick = {
-                    if (!carritoViewModel.carritoItems.value.contains(monstruoItem.nombre)) {
-                        carritoViewModel.addToCarrito(monstruoItem.nombre)
-                        Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(context, "La carta ya está en el carrito", Toast.LENGTH_SHORT).show()
-                    }
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 16.dp)
-            ) {
-                Text(text = "Añadir al carrito")
-            }
-        }
+        )
     }
 
     @Composable
     fun MagicaContent(magicaItem: MagicaItem) {
         val context = LocalContext.current
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                CoilImage(
-                    url = magicaItem.imagen,
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                            Text(text = "")
+                        }
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = { finish() }) {
+                            Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        }
+                    },
+                    backgroundColor = Color.White,
+                    contentColor = Color.Black
+                )
+            },
+            content = { paddingValues ->
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier
-                        .size(450.dp)
-                        .padding(bottom = 16.dp)
-                )
-                Text(
-                    text = normalizarTexto(magicaItem.nombre),
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
-                Column(modifier = Modifier.padding(bottom = 8.dp)) {
-                    Text(text = normalizarTexto(magicaItem.tipoMagia), fontSize = 16.sp, modifier = Modifier.padding(bottom = 4.dp))
-                    Box(
+                        .fillMaxSize()
+                        .padding(paddingValues)
+                        .padding(16.dp)
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        CoilImage(
+                            url = magicaItem.imagen,
+                            modifier = Modifier
+                                .size(400.dp)
+                                .padding(bottom = 16.dp)
+                        )
+                        Text(
+                            text = normalizarTexto(magicaItem.nombre),
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(bottom = 8.dp)
+                        )
+                        Column(modifier = Modifier.padding(bottom = 8.dp)) {
+                            Text(text = normalizarTexto(magicaItem.tipoMagia), fontSize = 16.sp, modifier = Modifier.padding(bottom = 4.dp))
+                            Box(
+                                modifier = Modifier
+                                    .height(150.dp)
+                                    .verticalScroll(rememberScrollState())
+                            ) {
+                                Text(text = normalizarTexto(magicaItem.efecto), fontSize = 16.sp)
+                            }
+                        }
+                    }
+                    Button(
+                        onClick = {
+                            if (!carritoViewModel.carritoItems.value.contains(magicaItem.nombre)) {
+                                carritoViewModel.addToCarrito(magicaItem.nombre)
+                                Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(context, "La carta ya está en el carrito", Toast.LENGTH_SHORT).show()
+                            }
+                        },
                         modifier = Modifier
-                            .height(150.dp)
-                            .verticalScroll(rememberScrollState())
+                            .fillMaxWidth()
+                            .padding(bottom = 16.dp)
                     ) {
-                        Text(text = normalizarTexto(magicaItem.efecto), fontSize = 16.sp)
+                        Text(text = "Añadir al carrito")
                     }
                 }
             }
-            Button(
-                onClick = {
-                    if (!carritoViewModel.carritoItems.value.contains(magicaItem.nombre)) {
-                        carritoViewModel.addToCarrito(magicaItem.nombre)
-                        Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(context, "La carta ya está en el carrito", Toast.LENGTH_SHORT).show()
-                    }
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 16.dp)
-            ) {
-                Text(text = "Añadir al carrito")
-            }
-        }
+        )
     }
 
     @Composable
     fun TrampaContent(trampaItem: TrampaItem) {
         val context = LocalContext.current
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                CoilImage(
-                    url = trampaItem.imagen,
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                            Text(text = "")
+                        }
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = { finish() }) {
+                            Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        }
+                    },
+                    backgroundColor = Color.White,
+                    contentColor = Color.Black
+                )
+            },
+            content = { paddingValues ->
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier
-                        .size(450.dp)
-                        .padding(bottom = 16.dp)
-                )
-                Text(
-                    text = normalizarTexto(trampaItem.nombre),
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
-                Column(modifier = Modifier.padding(bottom = 8.dp)) {
-                    Text(text = normalizarTexto(trampaItem.tipoTrampa), fontSize = 16.sp, modifier = Modifier.padding(bottom = 4.dp))
-                    Box(
+                        .fillMaxSize()
+                        .padding(paddingValues)
+                        .padding(16.dp)
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        CoilImage(
+                            url = trampaItem.imagen,
+                            modifier = Modifier
+                                .size(400.dp)
+                                .padding(bottom = 16.dp)
+                        )
+                        Text(
+                            text = normalizarTexto(trampaItem.nombre),
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(bottom = 8.dp)
+                        )
+                        Column(modifier = Modifier.padding(bottom = 8.dp)) {
+                            Text(text = normalizarTexto(trampaItem.tipoTrampa), fontSize = 16.sp, modifier = Modifier.padding(bottom = 4.dp))
+                            Box(
+                                modifier = Modifier
+                                    .height(150.dp)
+                                    .verticalScroll(rememberScrollState())
+                            ) {
+                                Text(text = normalizarTexto(trampaItem.efecto), fontSize = 16.sp)
+                            }
+                        }
+                    }
+                    Button(
+                        onClick = {
+                            if (!carritoViewModel.carritoItems.value.contains(trampaItem.nombre)) {
+                                carritoViewModel.addToCarrito(trampaItem.nombre)
+                                Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(context, "La carta ya está en el carrito", Toast.LENGTH_SHORT).show()
+                            }
+                        },
                         modifier = Modifier
-                            .height(150.dp)
-                            .verticalScroll(rememberScrollState())
+                            .fillMaxWidth()
+                            .padding(bottom = 16.dp)
                     ) {
-                        Text(text = normalizarTexto(trampaItem.efecto), fontSize = 16.sp)
+                        Text(text = "Añadir al carrito")
                     }
                 }
             }
-            Button(
-                onClick = {
-                    if (!carritoViewModel.carritoItems.value.contains(trampaItem.nombre)) {
-                        carritoViewModel.addToCarrito(trampaItem.nombre)
-                        Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(context, "La carta ya está en el carrito", Toast.LENGTH_SHORT).show()
-                    }
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 16.dp)
-            ) {
-                Text(text = "Añadir al carrito")
-            }
-        }
+        )
     }
 }
