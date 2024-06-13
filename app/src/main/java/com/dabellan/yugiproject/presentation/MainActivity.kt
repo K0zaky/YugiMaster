@@ -72,7 +72,7 @@ class MainActivity : ComponentActivity() {
             topBar = {
                 Surface {
                     TopAppBar(
-                        title = { Text("YugiApp") }
+                        title = { Text("YugiMaster") }
                     )
                 }
             },

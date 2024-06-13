@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">yugiproject</string>
+    <string name="app_name">YugiMaster</string>
     <string name="title_activity_bottom_nav">BottomNav</string>
     <string name="title_activity_cartas_list">CartasList</string>
     <!-- Strings used for fragments for navigation -->
